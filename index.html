@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damián Lerda Automotores | Autos bien elegidos. Negocios bien cerrados.</title>
+<meta name="description" content="Tu contacto para comprar o vender autos en Córdoba. Atención directa, autos seleccionados y una gestión simple, rápida y segura.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        dark: '#0A0A0A',
+        darker: '#050505',
+        card: '#111111',
+        border: '#1A1A1A',
+        gold: '#D6C4A1',
+        goldLight: '#E8DCCA',
+        goldDark: '#B8A685',
+        muted: '#888888',
+        subtle: '#666666',
+      },
+      fontFamily: {
+        display: ['Playfair Display', 'serif'],
+        body: ['DM Sans', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: #0A0A0A; color: #fff; overflow-x: hidden; }
+::selection { background: #D6C4A1; color: #0A0A0A; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+.fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.4) 30%, rgba(10,10,10,0.85) 70%, #0A0A0A 100%);
+}
+
+.gold-gradient { background: linear-gradient(135deg, #D6C4A1 0%, #B8A685 100%); }
+
+.card-hover { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+.card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(214, 196, 161, 0.08); }
+
+.line-reveal { width: 0; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.line-reveal.visible { width: 60px; }
+
+.nav-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+
+.vehicle-img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.group:hover .vehicle-img { transform: scale(1.05); }
+
+.btn-gold {
+  background: linear-gradient(135deg, #D6C4A1 0%, #C4B28F 100%);
+  color: #0A0A0A;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-gold:hover { box-shadow: 0 8px 32px rgba(214, 196, 161, 0.3); transform: translateY(-1px); }
+
+.btn-outline {
+  border: 1px solid rgba(214, 196, 161, 0.4);
+  color: #D6C4A1;
+  transition: all 0.3s ease;
+}
+.btn-outline:hover { background: rgba(214, 196, 161, 0.1); border-color: #D6C4A1; }
+
+.pulse-dot {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+.grain::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.step-line {
+  background: linear-gradient(180deg, #D6C4A1 0%, rgba(214,196,161,0.1) 100%);
+}
+
+select, input {
+  -webkit-appearance: none;
+  appearance: none;
+}
+</style>
+</head>
+<body class="grain">
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20consultar%20por%20un%20vehículo" target="_blank" rel="noopener"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform pulse-dot">
+  <i class="fab fa-whatsapp text-white text-2xl"></i>
+</a>
+
+<!-- Navigation -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500">
+  <div class="max-w-[1200px] mx-auto px-6 py-5 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full gold-gradient flex items-center justify-center">
+        <span class="font-display font-bold text-dark text-sm">DL</span>
+      </div>
+      <div class="hidden sm:block">
+        <span class="font-display text-lg font-semibold text-white tracking-wide">Damián Lerda</span>
+        <span class="block text-[10px] text-gold uppercase tracking-[3px] -mt-1">Automotores</span>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
+      <a href="#vehiculos" class="hover:text-gold transition-colors">Vehículos</a>
+      <a href="#beneficios" class="hover:text-gold transition-colors">Beneficios</a>
+      <a href="#proceso" class="hover:text-gold transition-colors">Proceso</a>
+      <a href="#contacto" class="hover:text-gold transition-colors">Contacto</a>
+    </div>
+    <a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20consultar%20por%20un%20vehículo" target="_blank" rel="noopener"
+       class="btn-outline px-5 py-2.5 rounded-full text-sm hidden sm:inline-flex items-center gap-2">
+      <i class="fab fa-whatsapp"></i> Contactar
+    </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative min-h-screen flex items-end pb-20 md:pb-28">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=1920&q=80" alt="Auto premium" class="w-full h-full object-cover">
+    <div class="hero-gradient absolute inset-0"></div>
+    <div class="absolute inset-0 bg-dark/40"></div>
+  </div>
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6 w-full">
+    <div class="max-w-2xl">
+      <div class="flex items-center gap-3 mb-6 fade-up">
+        <div class="w-12 h-[1px] bg-gold"></div>
+        <span class="text-gold text-sm font-medium uppercase tracking-[3px]">Córdoba, Argentina</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6 fade-up" style="transition-delay:0.1s">
+        Tu contacto para <span class="text-gold">comprar o vender</span> autos en Córdoba
+      </h1>
+      <p class="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 max-w-lg fade-up" style="transition-delay:0.2s">
+        Atención directa, autos seleccionados y una gestión simple, rápida y segura.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 fade-up" style="transition-delay:0.3s">
+        <a href="#vehiculos" class="btn-gold px-8 py-4 rounded-full text-center text-base">
+          Ver vehículos disponibles
+        </a>
+        <a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20consultar%20por%20un%20vehículo" target="_blank" rel="noopener"
+           class="btn-outline px-8 py-4 rounded-full text-center text-base inline-flex items-center justify-center gap-2">
+          <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vehicle Search -->
+<section class="py-20 md:py-28 relative">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="bg-card border border-border rounded-3xl p-8 md:p-12 fade-up">
+      <div class="flex items-center gap-3 mb-8">
+        <i class="fas fa-search text-gold text-sm"></i>
+        <h2 class="font-display text-2xl md:text-3xl font-semibold">Encontrá tu auto ideal</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        <div>
+          <label class="block text-xs text-muted uppercase tracking-wider mb-2">Presupuesto</label>
+          <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="">Seleccionar rango</option>
+            <option>Hasta $10.000.000</option>
+            <option>$10.000.000 – $20.000.000</option>
+            <option>$20.000.000 – $35.000.000</option>
+            <option>Más de $35.000.000</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-muted uppercase tracking-wider mb-2">Marca</label>
+          <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="">Todas las marcas</option>
+            <option>Toyota</option>
+            <option>Volkswagen</option>
+            <option>Ford</option>
+            <option>Chevrolet</option>
+            <option>Fiat</option>
+            <option>Peugeot</option>
+            <option>Renault</option>
+            <option>Honda</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-muted uppercase tracking-wider mb-2">Tipo de vehículo</label>
+          <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="">Todos los tipos</option>
+            <option>Sedán</option>
+            <option>SUV</option>
+            <option>Pickup</option>
+            <option>Hatchback</option>
+            <option>Coupé</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-muted uppercase tracking-wider mb-2">Año</label>
+          <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="">Cualquier año</option>
+            <option>2024</option>
+            <option>2023</option>
+            <option>2022</option>
+            <option>2021</option>
+            <option>2020</option>
+            <option>2019 o anterior</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-muted uppercase tracking-wider mb-2">Financiación</label>
+          <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="">Indistinto</option>
+            <option>Con financiación</option>
+            <option>Solo contado</option>
+          </select>
+        </div>
+        <div class="flex items-end">
+          <button class="w-full btn-gold px-6 py-3.5 rounded-xl text-sm flex items-center justify-center gap-2">
+            <i class="fas fa-search text-xs"></i> Buscar vehículos
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section id="beneficios" class="py-20 md:py-28">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center mb-16 fade-up">
+      <span class="text-gold text-sm uppercase tracking-[3px] font-medium">Por qué elegirnos</span>
+      <h2 class="font-display text-3xl md:text-5xl font-bold mt-4">Autos bien elegidos.<br>Negocios bien cerrados.</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-card border border-border rounded-2xl p-8 card-hover fade-up" style="transition-delay:0.05s">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
+          <i class="fas fa-shield-alt text-gold text-lg"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-3">Autos seleccionados</h3>
+        <p class="text-muted text-sm leading-relaxed">Cada vehículo pasa por una revisión exhaustiva antes de ser publicado. Solo ofrecemos unidades confiables.</p>
+      </div>
+      <div class="bg-card border border-border rounded-2xl p-8 card-hover fade-up" style="transition-delay:0.1s">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
+          <i class="fas fa-hand-holding-usd text-gold text-lg"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-3">Posibilidad de financiación</h3>
+        <p class="text-muted text-sm leading-relaxed">Trabajamos con distintas opciones de financiamiento para que accedas al auto que buscás.</p>
+      </div>
+      <div class="bg-card border border-border rounded-2xl p-8 card-hover fade-up" style="transition-delay:0.15s">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
+          <i class="fas fa-file-signature text-gold text-lg"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-3">Gestión automotor ágil</h3>
+        <p class="text-muted text-sm leading-relaxed">Nos encargamos de toda la documentación, transferencias y trámites para que no pierdas tiempo.</p>
+      </div>
+      <div class="bg-card border border-border rounded-2xl p-8 card-hover fade-up" style="transition-delay:0.2s">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
+          <i class="fas fa-exchange-alt text-gold text-lg"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-3">Tomamos tu usado</h3>
+        <p class="text-muted text-sm leading-relaxed">Valuamos tu vehículo actual y lo tomamos como parte de pago. Hacemos el cambio simple.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Vehicles -->
+<section id="vehiculos" class="py-20 md:py-28 bg-darker">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16 fade-up">
+      <div>
+        <span class="text-gold text-sm uppercase tracking-[3px] font-medium">Stock disponible</span>
+        <h2 class="font-display text-3xl md:text-5xl font-bold mt-4">Vehículos destacados</h2>
+      </div>
+      <a href="#" class="text-gold text-sm hover:underline underline-offset-4 transition-all">Ver todo el stock →</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Vehicle 1 -->
+      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up">
+        <div class="relative overflow-hidden aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&q=80" alt="Toyota Corolla Cross" class="w-full h-full object-cover vehicle-img">
+          <div class="absolute top-4 left-4">
+            <span class="bg-gold/90 text-dark text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full">Financiación disponible</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-semibold mb-1">Toyota Corolla Cross</h3>
+          <p class="text-muted text-sm mb-4">SEG 2.0 CVT · 2023 · 28.000 km</p>
+          <div class="flex items-center justify-between">
+            <span class="text-gold font-display text-2xl font-bold">$28.500.000</span>
+            <a href="https://wa.me/5493515555555?text=Hola%2C%20consulto%20por%20la%20Toyota%20Corolla%20Cross%202023" target="_blank" rel="noopener"
+               class="btn-outline px-5 py-2.5 rounded-full text-sm">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle 2 -->
+      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:0.05s">
+        <div class="relative overflow-hidden aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1606611013016-969c19ba27b5?w=800&q=80" alt="Volkswagen Vento" class="w-full h-full object-cover vehicle-img">
+          <div class="absolute top-4 left-4">
+            <span class="bg-gold/90 text-dark text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full">Financiación disponible</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-semibold mb-1">Volkswagen Vento</h3>
+          <p class="text-muted text-sm mb-4">Highline 1.4 TSI · 2022 · 42.000 km</p>
+          <div class="flex items-center justify-between">
+            <span class="text-gold font-display text-2xl font-bold">$22.900.000</span>
+            <a href="https://wa.me/5493515555555?text=Hola%2C%20consulto%20por%20el%20Volkswagen%20Vento%202022" target="_blank" rel="noopener"
+               class="btn-outline px-5 py-2.5 rounded-full text-sm">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle 3 -->
+      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:0.1s">
+        <div class="relative overflow-hidden aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80" alt="Ford Ranger" class="w-full h-full object-cover vehicle-img">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-semibold mb-1">Ford Ranger</h3>
+          <p class="text-muted text-sm mb-4">XLT 3.2 TDCI 4x4 · 2023 · 35.000 km</p>
+          <div class="flex items-center justify-between">
+            <span class="text-gold font-display text-2xl font-bold">$38.700.000</span>
+            <a href="https://wa.me/5493515555555?text=Hola%2C%20consulto%20por%20la%20Ford%20Ranger%202023" target="_blank" rel="noopener"
+               class="btn-outline px-5 py-2.5 rounded-full text-sm">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle 4 -->
+      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:0.05s">
+        <div class="relative overflow-hidden aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&q=80" alt="Peugeot 208" class="w-full h-full object-cover vehicle-img">
+          <div class="absolute top-4 left-4">
+            <span class="bg-gold/90 text-dark text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full">Financiación disponible</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-semibold mb-1">Peugeot 208</h3>
+          <p class="text-muted text-sm mb-4">Feline 1.6 Tiptronic · 2023 · 18.000 km</p>
+          <div class="flex items-center justify-between">
+            <span class="text-gold font-display text-2xl font-bold">$19.200.000</span>
+            <a href="https://wa.me/5493515555555?text=Hola%2C%20consulto%20por%20el%20Peugeot%20208%202023" target="_blank" rel="noopener"
+               class="btn-outline px-5 py-2.5 rounded-full text-sm">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle 5 -->
+      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:0.1s">
+        <div class="relative overflow-hidden aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1583267746897-2cf415887172?w=800&q=80" alt="Chevrolet Tracker" class="w-full h-full object-cover vehicle-img">
+          <div class="absolute top-4 left-4">
+            <span class="bg-gold/90 text-dark text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full">Financiación disponible</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-semibold mb-1">Chevrolet Tracker</h3>
+          <p class="text-muted text-sm mb-4">Premier 1.2T AT · 2022 · 31.000 km</p>
+          <div class="flex items-center justify-between">
+            <span class="text-gold font-display text-2xl font-bold">$24.500.000</span>
+            <a href="https://wa.me/5493515555555?text=Hola%2C%20consulto%20por%20la%20Chevrolet%20Tracker%202022" target="_blank" rel="noopener"
+               class="btn-outline px-5 py-2.5 rounded-full text-sm">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle 6 -->
+      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:0.15s">
+        <div class="relative overflow-hidden aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80" alt="Honda Civic" class="w-full h-full object-cover vehicle-img">
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-semibold mb-1">Honda Civic</h3>
+          <p class="text-muted text-sm mb-4">EXL 2.0 CVT · 2021 · 48.000 km</p>
+          <div class="flex items-center justify-between">
+            <span class="text-gold font-display text-2xl font-bold">$26.800.000</span>
+            <a href="https://wa.me/5493515555555?text=Hola%2C%20consulto%20por%20el%20Honda%20Civic%202021" target="_blank" rel="noopener"
+               class="btn-outline px-5 py-2.5 rounded-full text-sm">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="proceso" class="py-20 md:py-28">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center mb-16 fade-up">
+      <span class="text-gold text-sm uppercase tracking-[3px] font-medium">Proceso simple</span>
+      <h2 class="font-display text-3xl md:text-5xl font-bold mt-4">Así de fácil funciona</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative">
+      <!-- Connector line (desktop) -->
+      <div class="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-[1px] bg-border"></div>
+
+      <div class="text-center fade-up relative" style="transition-delay:0.05s">
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
+          <span class="font-display text-gold text-2xl font-bold">01</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">Elegís tu próximo auto</h3>
+        <p class="text-muted text-sm leading-relaxed max-w-[220px] mx-auto">Explorá nuestro stock y encontrá el vehículo que se adapta a lo que buscás.</p>
+      </div>
+      <div class="text-center fade-up relative" style="transition-delay:0.1s">
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
+          <span class="font-display text-gold text-2xl font-bold">02</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">Evaluamos tu usado</h3>
+        <p class="text-muted text-sm leading-relaxed max-w-[220px] mx-auto">Si querés entregar tu auto actual, lo tasamos de manera justa y transparente.</p>
+      </div>
+      <div class="text-center fade-up relative" style="transition-delay:0.15s">
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
+          <span class="font-display text-gold text-2xl font-bold">03</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">Gestionamos la financiación</h3>
+        <p class="text-muted text-sm leading-relaxed max-w-[220px] mx-auto">Armamos un plan de pago que se ajuste a tus posibilidades reales.</p>
+      </div>
+      <div class="text-center fade-up relative" style="transition-delay:0.2s">
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
+          <span class="font-display text-gold text-2xl font-bold">04</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">Cerrás la operación</h3>
+        <p class="text-muted text-sm leading-relaxed max-w-[220px] mx-auto">Con toda la documentación en regla y la seguridad de un proceso profesional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Section -->
+<section class="py-20 md:py-28 bg-darker">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-up">
+      <div class="text-center p-10 bg-card border border-border rounded-2xl">
+        <span class="font-display text-5xl md:text-6xl font-bold text-gold">+200</span>
+        <p class="text-muted text-sm mt-3 uppercase tracking-wider">Operaciones concretadas</p>
+      </div>
+      <div class="text-center p-10 bg-card border border-border rounded-2xl">
+        <div class="flex justify-center mb-2">
+          <i class="fas fa-user-tie text-gold text-5xl"></i>
+        </div>
+        <h3 class="font-display text-xl font-semibold mt-2">Atención directa</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Hablás directamente con Damián. Sin intermediarios, sin demoras.</p>
+      </div>
+      <div class="text-center p-10 bg-card border border-border rounded-2xl">
+        <div class="flex justify-center mb-2">
+          <i class="fas fa-comments text-gold text-5xl"></i>
+        </div>
+        <h3 class="font-display text-xl font-semibold mt-2">Asesoramiento personalizado</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Te guiamos en cada paso para que tomes la mejor decisión.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-20 md:py-28">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center mb-16 fade-up">
+      <span class="text-gold text-sm uppercase tracking-[3px] font-medium">Testimonios</span>
+      <h2 class="font-display text-3xl md:text-5xl font-bold mt-4">Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:0.05s">
+        <div class="flex gap-1 mb-4">
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+        </div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">"Compré una Tracker con Damián y fue todo impecable. Me asesoró en cada detalle, se encargó de la transferencia y me consiguió financiación en 48 horas. Totalmente recomendable."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center">
+            <span class="text-gold font-semibold text-sm">ML</span>
+          </div>
+          <div>
+            <span class="text-white text-sm font-medium block">Martín López</span>
+            <span class="text-muted text-xs">Córdoba Capital</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:0.1s">
+        <div class="flex gap-1 mb-4">
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+        </div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">"Vendí mi auto usado a través de Damián y conseguí mejor precio del que esperaba. Todo muy rápido, transparente y profesional. Ya le recomendé a varios conocidos."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center">
+            <span class="text-gold font-semibold text-sm">CF</span>
+          </div>
+          <div>
+            <span class="text-white text-sm font-medium block">Carolina Fernández</span>
+            <span class="text-muted text-xs">Villa Carlos Paz</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:0.15s">
+        <div class="flex gap-1 mb-4">
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+          <i class="fas fa-star text-gold text-sm"></i>
+        </div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">"La experiencia fue excelente de principio a fin. Damián me consiguió exactamente el auto que buscaba, con la documentación al día y un trato muy honesto. Un profesional de verdad."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center">
+            <span class="text-gold font-semibold text-sm">SR</span>
+          </div>
+          <div>
+            <span class="text-white text-sm font-medium block">Santiago Romero</span>
+            <span class="text-muted text-xs">Jesús María</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Automation Section -->
+<section class="py-20 md:py-28 bg-darker">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <span class="text-gold text-sm uppercase tracking-[3px] font-medium">Tecnología</span>
+        <h2 class="font-display text-3xl md:text-4xl font-bold mt-4 mb-6">Atención inteligente, disponible siempre</h2>
+        <p class="text-muted leading-relaxed mb-10">Combinamos la atención personal con herramientas que nos permiten responder más rápido y no perder ninguna oportunidad.</p>
+        <div class="space-y-6">
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-robot text-gold text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Respuestas automáticas 24/7</h4>
+              <p class="text-muted text-sm leading-relaxed">Recibís atención inmediata a cualquier hora, incluso fuera del horario comercial.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-chart-line text-gold text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Captación y organización de leads</h4>
+              <p class="text-muted text-sm leading-relaxed">Cada consulta queda registrada y organizada para darte seguimiento personalizado.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fab fa-whatsapp text-gold text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Integración con WhatsApp e Instagram</h4>
+              <p class="text-muted text-sm leading-relaxed">Nos comunicamos por los canales que usás a diario, sin complicaciones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up relative" style="transition-delay:0.1s">
+        <div class="bg-card border border-border rounded-2xl p-8 relative overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-40 h-40 bg-gold/5 rounded-full blur-3xl"></div>
+          <div class="space-y-4">
+            <div class="bg-darker rounded-xl p-4 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                <i class="fab fa-whatsapp text-white text-sm"></i>
+              </div>
+              <div>
+                <span class="text-xs text-muted">WhatsApp · Ahora</span>
+                <p class="text-sm text-white mt-0.5">Hola, quiero consultar por la Tracker</p>
+              </div>
+            </div>
+            <div class="bg-darker rounded-xl p-4 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-robot text-gold text-xs"></i>
+              </div>
+              <div>
+                <span class="text-xs text-muted">Bot · Automático</span>
+                <p class="text-sm text-white mt-0.5">¡Hola! Gracias por tu interés. Te paso la info al instante 📋</p>
+              </div>
+            </div>
+            <div class="bg-darker rounded-xl p-4 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+                <i class="fab fa-instagram text-white text-xs"></i>
+              </div>
+              <div>
+                <span class="text-xs text-muted">Instagram · 2 min</span>
+                <p class="text-sm text-white mt-0.5">Vi la Ranger en tu feed, ¿sigue disponible?</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-border flex items-center justify-between">
+            <span class="text-xs text-muted">3 leads nuevos hoy</span>
+            <div class="flex -space-x-2">
+              <div class="w-7 h-7 rounded-full bg-gold/30 border-2 border-card"></div>
+              <div class="w-7 h-7 rounded-full bg-gold/20 border-2 border-card"></div>
+              <div class="w-7 h-7 rounded-full bg-gold/10 border-2 border-card"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section id="contacto" class="py-24 md:py-32 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-dark via-card to-dark"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[100px]"></div>
+  <div class="relative z-10 max-w-[800px] mx-auto px-6 text-center fade-up">
+    <span class="text-gold text-sm uppercase tracking-[3px] font-medium">Empezá hoy</span>
+    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 leading-tight">Encontrá tu próximo auto con la tranquilidad de estar bien asesorado.</h2>
+    <p class="text-muted text-lg mb-10 max-w-lg mx-auto">Contactanos y recibí atención personalizada de principio a fin.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20consultar%20por%20un%20vehículo" target="_blank" rel="noopener"
+         class="btn-gold px-10 py-4 rounded-full text-base inline-flex items-center justify-center gap-2">
+        <i class="fab fa-whatsapp text-lg"></i> Hablar por WhatsApp
+      </a>
+      <a href="#vehiculos" class="btn-outline px-10 py-4 rounded-full text-base">
+        Ver vehículos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-16 border-t border-border">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-full gold-gradient flex items-center justify-center">
+            <span class="font-display font-bold text-dark text-sm">DL</span>
+          </div>
+          <div>
+            <span class="font-display text-lg font-semibold">Damián Lerda</span>
+            <span class="block text-[10px] text-gold uppercase tracking-[3px] -mt-1">Automotores</span>
+          </div>
+        </div>
+        <p class="text-muted text-sm leading-relaxed">Autos bien elegidos.<br>Negocios bien cerrados.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm uppercase tracking-wider mb-4 text-gold">Contacto</h4>
+        <div class="space-y-3">
+          <a href="https://wa.me/5493515555555" target="_blank" rel="noopener" class="flex items-center gap-3 text-muted text-sm hover:text-gold transition-colors">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://instagram.com/damianlerdaautos" target="_blank" rel="noopener" class="flex items-center gap-3 text-muted text-sm hover:text-gold transition-colors">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a href="mailto:contacto@damianlerda.com" class="flex items-center gap-3 text-muted text-sm hover:text-gold transition-colors">
+            <i class="fas fa-envelope"></i> contacto@damianlerda.com
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm uppercase tracking-wider mb-4 text-gold">Ubicación</h4>
+        <p class="text-muted text-sm leading-relaxed">
+          <i class="fas fa-map-marker-alt mr-2"></i>Córdoba, Argentina
+        </p>
+      </div>
+    </div>
+    <div class="mt-12 pt-8 border-t border-border text-center">
+      <p class="text-subtle text-xs">&copy; 2026 Damián Lerda Automotores. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up, .line-reveal').forEach(el => observer.observe(el));
+
+// Navbar background on scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    navbar.classList.add('bg-dark/90', 'nav-blur', 'border-b', 'border-border');
+    navbar.querySelector('div').classList.remove('py-5');
+    navbar.querySelector('div').classList.add('py-3');
+  } else {
+    navbar.classList.remove('bg-dark/90', 'nav-blur', 'border-b', 'border-border');
+    navbar.querySelector('div').classList.add('py-5');
+    navbar.querySelector('div').classList.remove('py-3');
+  }
+});
+</script>
+</body>
+</html>
