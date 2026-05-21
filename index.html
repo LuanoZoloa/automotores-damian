@@ -40,6 +40,9 @@ body{font-family:'DM Sans',sans-serif;background:#0A0A0A;color:#fff;overflow-x:h
 .btn-outline{border:1px solid #333;color:#fff;transition:all .3s ease}
 .btn-outline:hover{border-color:#666;background:rgba(255,255,255,.04)}
 
+.btn-wa{background:#25D366;color:#fff;font-weight:600;transition:all .3s ease}
+.btn-wa:hover{background:#20bd5a;box-shadow:0 8px 32px rgba(37,211,102,.25);transform:translateY(-1px)}
+
 .pulse-wa{animation:pulseWa 2s infinite}
 @keyframes pulseWa{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.35)}50%{box-shadow:0 0 0 14px rgba(37,211,102,0)}}
 
@@ -52,15 +55,98 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .grain::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
 
 .usado-gradient{background:linear-gradient(135deg,rgba(200,192,180,.08) 0%,rgba(200,192,180,.02) 100%)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:60;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-container{position:fixed;inset:0;z-index:61;overflow-y:auto;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.modal-container.active{pointer-events:all;opacity:1}
+.modal-panel{max-width:960px;margin:2rem auto;background:#0F0F0F;border:1px solid #1A1A1A;border-radius:1.25rem;overflow:hidden;transform:translateY(24px) scale(.98);transition:transform .4s cubic-bezier(.16,1,.3,1);position:relative}
+.modal-container.active .modal-panel{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:1rem;right:1rem;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(10,10,10,.7);backdrop-filter:blur(8px);border:1px solid #333;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s ease;color:#fff}
+.modal-close:hover{background:rgba(255,255,255,.1);border-color:#555}
+
+/* Gallery */
+.gallery-main{position:relative;aspect-ratio:16/10;overflow:hidden;background:#050505}
+.gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .4s ease}
+.gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(10,10,10,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;transition:all .2s ease;font-size:12px}
+.gallery-nav:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3)}
+.gallery-nav.prev{left:12px}
+.gallery-nav.next{right:12px}
+.gallery-thumbs{display:flex;gap:6px;padding:12px 16px;overflow-x:auto;background:#0A0A0A}
+.gallery-thumbs::-webkit-scrollbar{height:0}
+.gallery-thumb{width:64px;height:48px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all .2s ease;flex-shrink:0;opacity:.5}
+.gallery-thumb.active,.gallery-thumb:hover{border-color:#C8C0B4;opacity:1}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover}
+
+/* Spec grid */
+.spec-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1A1A1A}
+.spec-item:last-child{border-bottom:none}
+.spec-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid #1A1A1A;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#777;font-size:11px}
+.spec-label{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1.5px;line-height:1}
+.spec-value{font-size:13px;color:#E8E8E8;font-weight:500;margin-top:2px}
+
+@media(max-width:640px){
+  .modal-panel{margin:.5rem;border-radius:1rem}
+  .gallery-main{aspect-ratio:4/3}
+}
 </style>
 </head>
 <body class="grain">
 
 <!-- Floating WhatsApp -->
-<a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20consultar%20por%20un%20vehículo" target="_blank" rel="noopener"
+<a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20consultar%20por%20un%20vehículo" target="_blank" rel="noopener"
    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform pulse-wa" aria-label="WhatsApp">
   <i class="fab fa-whatsapp text-white text-2xl"></i>
 </a>
+
+<!-- Modal Overlay -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+<div id="modalContainer" class="modal-container">
+  <div class="modal-panel" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
+      <i class="fas fa-times text-sm"></i>
+    </button>
+    <!-- Gallery -->
+    <div class="gallery-main" id="galleryMain">
+      <img id="galleryImg" src="" alt="">
+      <button class="gallery-nav prev" onclick="galleryPrev()"><i class="fas fa-chevron-left"></i></button>
+      <button class="gallery-nav next" onclick="galleryNext()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="gallery-thumbs" id="galleryThumbs"></div>
+    <!-- Content -->
+    <div class="p-6 md:p-8">
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 id="modalTitle" class="font-display text-2xl md:text-3xl font-medium tracking-tight"></h2>
+          <p id="modalSubtitle" class="text-muted text-[13px] mt-1"></p>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span id="modalPrice" class="font-display text-2xl md:text-3xl font-medium text-white block"></span>
+          <span id="modalFinance" class="text-[11px] text-accent uppercase tracking-wider font-medium mt-1 block"></span>
+        </div>
+      </div>
+      <!-- Description -->
+      <p id="modalDesc" class="text-muted text-[14px] leading-relaxed mb-8 border-b border-border pb-8"></p>
+      <!-- Specs Grid -->
+      <h3 class="text-[11px] text-muted uppercase tracking-[3px] font-medium mb-4">Especificaciones técnicas</h3>
+      <div id="modalSpecs" class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 mb-8"></div>
+      <!-- Benefits -->
+      <div class="bg-darker rounded-xl border border-border p-5 mb-8">
+        <h3 class="text-[11px] text-muted uppercase tracking-[3px] font-medium mb-4">Incluye</h3>
+        <div id="modalBenefits" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+      </div>
+      <!-- CTA -->
+      <a id="modalWaBtn" href="" target="_blank" rel="noopener"
+         class="btn-wa w-full py-4 rounded-xl text-[15px] flex items-center justify-center gap-3">
+        <i class="fab fa-whatsapp text-xl"></i>
+        <span id="modalWaText">Consultar este vehículo</span>
+      </a>
+      <p class="text-center text-subtle text-[11px] mt-3">Respuesta inmediata · Sin compromiso</p>
+    </div>
+  </div>
+</div>
 
 <!-- Navigation -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500">
@@ -78,7 +164,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
       <a href="#usado" class="hover:text-white transition-colors">Tu usado</a>
       <a href="#proceso" class="hover:text-white transition-colors">Proceso</a>
     </div>
-    <a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
+    <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
        class="btn-outline px-5 py-2.5 rounded-full text-[13px] hidden sm:inline-flex items-center gap-2 font-medium">
       <i class="fab fa-whatsapp text-[#25D366]"></i> Recibir asesoramiento
     </a>
@@ -110,7 +196,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         <a href="#vehiculos" class="btn-primary px-8 py-4 rounded-full text-center text-[15px]">
           Ver vehículos disponibles
         </a>
-        <a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
+        <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
            class="btn-outline px-8 py-4 rounded-full text-center text-[15px] inline-flex items-center justify-center gap-2">
           <i class="fab fa-whatsapp text-[#25D366]"></i> Recibir asesoramiento
         </a>
@@ -234,7 +320,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
   </div>
 </section>
 
-<!-- Featured Vehicles -->
+<!-- Featured Vehicles (Data-Driven) -->
 <section id="vehiculos" class="py-20 md:py-28 bg-darker">
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14 fade-up">
@@ -244,111 +330,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
       </div>
       <a href="#" class="text-muted text-[13px] hover:text-white transition-colors flex items-center gap-1.5">Ver todo el stock <i class="fas fa-arrow-right text-[10px]"></i></a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up">
-        <div class="relative overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80" alt="Peugeot 208" class="w-full h-full object-cover vehicle-img">
-          <div class="absolute top-4 left-4">
-            <span class="bg-white/90 text-dark text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm">Financiación disponible</span>
-          </div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-display text-xl font-medium tracking-tight mb-1">Peugeot 208</h3>
-          <p class="text-muted text-[13px] mb-5">Feline 1.6 Tiptronic · 2023 · 22.000 km</p>
-          <div class="flex items-center justify-between">
-            <span class="text-white font-display text-[1.4rem] font-medium">$18.900.000</span>
-            <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20consultar%20por%20el%20Peugeot%20208%202023" target="_blank" rel="noopener"
-               class="btn-outline px-4 py-2 rounded-full text-[12px] font-medium">Consultar este vehículo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:.04s">
-        <div class="relative overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1606611013016-969c19ba27b5?w=800&q=80" alt="Volkswagen Vento" class="w-full h-full object-cover vehicle-img">
-          <div class="absolute top-4 left-4">
-            <span class="bg-white/90 text-dark text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm">Financiación disponible</span>
-          </div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-display text-xl font-medium tracking-tight mb-1">Volkswagen Vento</h3>
-          <p class="text-muted text-[13px] mb-5">Highline 1.4 TSI · 2022 · 38.000 km</p>
-          <div class="flex items-center justify-between">
-            <span class="text-white font-display text-[1.4rem] font-medium">$22.500.000</span>
-            <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20consultar%20por%20el%20Volkswagen%20Vento%202022" target="_blank" rel="noopener"
-               class="btn-outline px-4 py-2 rounded-full text-[12px] font-medium">Consultar este vehículo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:.08s">
-        <div class="relative overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80" alt="Jeep Renegade" class="w-full h-full object-cover vehicle-img">
-        </div>
-        <div class="p-6">
-          <h3 class="font-display text-xl font-medium tracking-tight mb-1">Jeep Renegade</h3>
-          <p class="text-muted text-[13px] mb-5">Sport 1.8 AT · 2023 · 28.000 km</p>
-          <div class="flex items-center justify-between">
-            <span class="text-white font-display text-[1.4rem] font-medium">$26.200.000</span>
-            <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20consultar%20por%20la%20Jeep%20Renegade%202023" target="_blank" rel="noopener"
-               class="btn-outline px-4 py-2 rounded-full text-[12px] font-medium">Consultar este vehículo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:.04s">
-        <div class="relative overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&q=80" alt="Changan CS55 Plus" class="w-full h-full object-cover vehicle-img">
-          <div class="absolute top-4 left-4">
-            <span class="bg-white/90 text-dark text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm">Financiación disponible</span>
-          </div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-display text-xl font-medium tracking-tight mb-1">Changan CS55 Plus</h3>
-          <p class="text-muted text-[13px] mb-5">Luxury 1.5T DCT · 2024 · 12.000 km</p>
-          <div class="flex items-center justify-between">
-            <span class="text-white font-display text-[1.4rem] font-medium">$29.800.000</span>
-            <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20consultar%20por%20la%20Changan%20CS55%20Plus%202024" target="_blank" rel="noopener"
-               class="btn-outline px-4 py-2 rounded-full text-[12px] font-medium">Consultar este vehículo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:.08s">
-        <div class="relative overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1583267746897-2cf415887172?w=800&q=80" alt="Fiat Cronos" class="w-full h-full object-cover vehicle-img">
-          <div class="absolute top-4 left-4">
-            <span class="bg-white/90 text-dark text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm">Financiación disponible</span>
-          </div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-display text-xl font-medium tracking-tight mb-1">Fiat Cronos</h3>
-          <p class="text-muted text-[13px] mb-5">Precision 1.8 AT · 2023 · 19.000 km</p>
-          <div class="flex items-center justify-between">
-            <span class="text-white font-display text-[1.4rem] font-medium">$16.400.000</span>
-            <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20consultar%20por%20el%20Fiat%20Cronos%202023" target="_blank" rel="noopener"
-               class="btn-outline px-4 py-2 rounded-full text-[12px] font-medium">Consultar este vehículo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:.12s">
-        <div class="relative overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&q=80" alt="Volkswagen Taos" class="w-full h-full object-cover vehicle-img">
-        </div>
-        <div class="p-6">
-          <h3 class="font-display text-xl font-medium tracking-tight mb-1">Volkswagen Taos</h3>
-          <p class="text-muted text-[13px] mb-5">Comfortline 1.4 TSI · 2022 · 41.000 km</p>
-          <div class="flex items-center justify-between">
-            <span class="text-white font-display text-[1.4rem] font-medium">$31.500.000</span>
-            <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20consultar%20por%20la%20Volkswagen%20Taos%202022" target="_blank" rel="noopener"
-               class="btn-outline px-4 py-2 rounded-full text-[12px] font-medium">Consultar este vehículo</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <div id="vehicleGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </div>
 </section>
 
@@ -383,7 +365,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-3">
-            <a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago" target="_blank" rel="noopener"
+            <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago" target="_blank" rel="noopener"
                class="btn-primary px-7 py-3.5 rounded-full text-[14px] text-center inline-flex items-center justify-center gap-2">
               <i class="fab fa-whatsapp text-[#25D366]"></i> Cotizar mi usado
             </a>
@@ -480,13 +462,8 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         </div>
         <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"Compré un Vento con Damián y fue todo impecable. Me asesoró con cada detalle, se encargó de la transferencia y me consiguió financiación en 48 horas. Totalmente recomendable."</p>
         <div class="flex items-center gap-3 pt-5 border-t border-border">
-          <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center">
-            <span class="text-muted font-medium text-[12px]">ML</span>
-          </div>
-          <div>
-            <span class="text-white text-[13px] font-medium block">Martín López</span>
-            <span class="text-subtle text-[11px]">Córdoba Capital</span>
-          </div>
+          <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center"><span class="text-muted font-medium text-[12px]">ML</span></div>
+          <div><span class="text-white text-[13px] font-medium block">Martín López</span><span class="text-subtle text-[11px]">Córdoba Capital</span></div>
         </div>
       </div>
       <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:.08s">
@@ -495,13 +472,8 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         </div>
         <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"Vendí mi auto usado a través de Damián y conseguí mejor precio del que esperaba. Todo muy rápido, transparente y profesional. Ya le recomendé a varios conocidos."</p>
         <div class="flex items-center gap-3 pt-5 border-t border-border">
-          <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center">
-            <span class="text-muted font-medium text-[12px]">CF</span>
-          </div>
-          <div>
-            <span class="text-white text-[13px] font-medium block">Carolina Fernández</span>
-            <span class="text-subtle text-[11px]">Villa Carlos Paz</span>
-          </div>
+          <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center"><span class="text-muted font-medium text-[12px]">CF</span></div>
+          <div><span class="text-white text-[13px] font-medium block">Carolina Fernández</span><span class="text-subtle text-[11px]">Villa Carlos Paz</span></div>
         </div>
       </div>
       <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:.12s">
@@ -510,13 +482,8 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         </div>
         <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"La experiencia fue excelente de principio a fin. Me consiguió exactamente el auto que buscaba, con la documentación al día y un trato muy honesto. Un profesional de verdad."</p>
         <div class="flex items-center gap-3 pt-5 border-t border-border">
-          <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center">
-            <span class="text-muted font-medium text-[12px]">SR</span>
-          </div>
-          <div>
-            <span class="text-white text-[13px] font-medium block">Santiago Romero</span>
-            <span class="text-subtle text-[11px]">Jesús María</span>
-          </div>
+          <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center"><span class="text-muted font-medium text-[12px]">SR</span></div>
+          <div><span class="text-white text-[13px] font-medium block">Santiago Romero</span><span class="text-subtle text-[11px]">Jesús María</span></div>
         </div>
       </div>
     </div>
@@ -534,31 +501,16 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         <p class="text-muted text-[15px] leading-relaxed mb-10 max-w-md">Combinamos la atención personal con herramientas que nos permiten responder más rápido y no perder ninguna oportunidad.</p>
         <div class="space-y-7">
           <div class="flex gap-4 items-start">
-            <div class="w-10 h-10 rounded-xl bg-white/[.04] border border-border flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fas fa-robot text-white/50 text-sm"></i>
-            </div>
-            <div>
-              <h4 class="font-medium text-[15px] mb-1">Respuestas automáticas 24/7</h4>
-              <p class="text-muted text-[13px] leading-relaxed">Recibís atención inmediata a cualquier hora, incluso fuera del horario comercial.</p>
-            </div>
+            <div class="w-10 h-10 rounded-xl bg-white/[.04] border border-border flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-robot text-white/50 text-sm"></i></div>
+            <div><h4 class="font-medium text-[15px] mb-1">Respuestas automáticas 24/7</h4><p class="text-muted text-[13px] leading-relaxed">Recibís atención inmediata a cualquier hora, incluso fuera del horario comercial.</p></div>
           </div>
           <div class="flex gap-4 items-start">
-            <div class="w-10 h-10 rounded-xl bg-white/[.04] border border-border flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fas fa-chart-line text-white/50 text-sm"></i>
-            </div>
-            <div>
-              <h4 class="font-medium text-[15px] mb-1">Captación y organización de leads</h4>
-              <p class="text-muted text-[13px] leading-relaxed">Cada consulta queda registrada para darte seguimiento personalizado.</p>
-            </div>
+            <div class="w-10 h-10 rounded-xl bg-white/[.04] border border-border flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-chart-line text-white/50 text-sm"></i></div>
+            <div><h4 class="font-medium text-[15px] mb-1">Captación y organización de leads</h4><p class="text-muted text-[13px] leading-relaxed">Cada consulta queda registrada para darte seguimiento personalizado.</p></div>
           </div>
           <div class="flex gap-4 items-start">
-            <div class="w-10 h-10 rounded-xl bg-white/[.04] border border-border flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fab fa-whatsapp text-white/50 text-sm"></i>
-            </div>
-            <div>
-              <h4 class="font-medium text-[15px] mb-1">Integración con WhatsApp e Instagram</h4>
-              <p class="text-muted text-[13px] leading-relaxed">Nos comunicamos por los canales que usás a diario.</p>
-            </div>
+            <div class="w-10 h-10 rounded-xl bg-white/[.04] border border-border flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fab fa-whatsapp text-white/50 text-sm"></i></div>
+            <div><h4 class="font-medium text-[15px] mb-1">Integración con WhatsApp e Instagram</h4><p class="text-muted text-[13px] leading-relaxed">Nos comunicamos por los canales que usás a diario.</p></div>
           </div>
         </div>
       </div>
@@ -567,31 +519,16 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
           <div class="absolute -top-24 -right-24 w-48 h-48 bg-white/[.02] rounded-full blur-3xl"></div>
           <div class="space-y-3.5 relative">
             <div class="bg-darker rounded-xl p-4 flex items-center gap-3 border border-border/50">
-              <div class="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
-                <i class="fab fa-whatsapp text-white text-xs"></i>
-              </div>
-              <div class="min-w-0">
-                <span class="text-[10px] text-subtle block">WhatsApp · Ahora</span>
-                <p class="text-[13px] text-offwhite mt-0.5 truncate">Hola, quiero consultar por la Jeep Renegade</p>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0"><i class="fab fa-whatsapp text-white text-xs"></i></div>
+              <div class="min-w-0"><span class="text-[10px] text-subtle block">WhatsApp · Ahora</span><p class="text-[13px] text-offwhite mt-0.5 truncate">Hola, quiero consultar por la Jeep Renegade</p></div>
             </div>
             <div class="bg-darker rounded-xl p-4 flex items-center gap-3 border border-border/50">
-              <div class="w-8 h-8 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-robot text-white/40 text-[10px]"></i>
-              </div>
-              <div class="min-w-0">
-                <span class="text-[10px] text-subtle block">Respuesta automática</span>
-                <p class="text-[13px] text-offwhite mt-0.5 truncate">¡Hola! Gracias por tu interés. Te paso la info al instante</p>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0"><i class="fas fa-robot text-white/40 text-[10px]"></i></div>
+              <div class="min-w-0"><span class="text-[10px] text-subtle block">Respuesta automática</span><p class="text-[13px] text-offwhite mt-0.5 truncate">¡Hola! Gracias por tu interés. Te paso la info al instante</p></div>
             </div>
             <div class="bg-darker rounded-xl p-4 flex items-center gap-3 border border-border/50">
-              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center flex-shrink-0">
-                <i class="fab fa-instagram text-white text-[10px]"></i>
-              </div>
-              <div class="min-w-0">
-                <span class="text-[10px] text-subtle block">Instagram · 2 min</span>
-                <p class="text-[13px] text-offwhite mt-0.5 truncate">Vi el Cronos en tu feed, ¿sigue disponible?</p>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center flex-shrink-0"><i class="fab fa-instagram text-white text-[10px]"></i></div>
+              <div class="min-w-0"><span class="text-[10px] text-subtle block">Instagram · 2 min</span><p class="text-[13px] text-offwhite mt-0.5 truncate">Vi el Cronos en tu feed, ¿sigue disponible?</p></div>
             </div>
           </div>
           <div class="mt-5 pt-5 border-t border-border flex items-center justify-between">
@@ -617,21 +554,19 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     <p class="script-accent text-3xl md:text-4xl mb-8">bien asesorado.</p>
     <p class="text-muted text-base mb-10 max-w-md mx-auto">Contactanos y recibí atención personalizada de principio a fin. Sin compromiso.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/5493515555555?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
+      <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
          class="btn-primary px-9 py-4 rounded-full text-[15px] inline-flex items-center justify-center gap-2">
         <i class="fab fa-whatsapp text-[#25D366] text-lg"></i> Recibir asesoramiento
       </a>
-      <a href="#vehiculos" class="btn-outline px-9 py-4 rounded-full text-[15px]">
-        Ver vehículos
-      </a>
+      <a href="#vehiculos" class="btn-outline px-9 py-4 rounded-full text-[15px]">Ver vehículos</a>
     </div>
     <div class="flex flex-col sm:flex-row gap-3 justify-center mt-4">
-      <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago" target="_blank" rel="noopener"
+      <a href="https://wa.me/543572532366?text=Hola%2C%20quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago" target="_blank" rel="noopener"
          class="text-muted text-[13px] hover:text-white transition-colors inline-flex items-center justify-center gap-1.5">
         <i class="fas fa-car text-[10px]"></i> Cotizar mi usado
       </a>
-      <span class="hidden sm:inline text-dimmed">·</span>
-      <a href="https://wa.me/5493515555555?text=Hola%2C%20quiero%20consultar%20por%20financiación" target="_blank" rel="noopener"
+      <span class="hidden sm:inline text-dimmed">&middot;</span>
+      <a href="https://wa.me/543572532366?text=Hola%2C%20quiero%20consultar%20por%20financiación" target="_blank" rel="noopener"
          class="text-muted text-[13px] hover:text-white transition-colors inline-flex items-center justify-center gap-1.5">
         <i class="fas fa-calculator text-[10px]"></i> Solicitar financiación
       </a>
@@ -656,22 +591,14 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
       <div>
         <h4 class="font-medium text-[11px] uppercase tracking-[3px] mb-5 text-muted">Contacto</h4>
         <div class="space-y-3">
-          <a href="https://wa.me/5493515555555" target="_blank" rel="noopener" class="flex items-center gap-3 text-subtle text-[13px] hover:text-white transition-colors">
-            <i class="fab fa-whatsapp w-4 text-center"></i> WhatsApp
-          </a>
-          <a href="https://instagram.com/damianlerdaautos" target="_blank" rel="noopener" class="flex items-center gap-3 text-subtle text-[13px] hover:text-white transition-colors">
-            <i class="fab fa-instagram w-4 text-center"></i> Instagram
-          </a>
-          <a href="mailto:contacto@damianlerda.com" class="flex items-center gap-3 text-subtle text-[13px] hover:text-white transition-colors">
-            <i class="fas fa-envelope w-4 text-center"></i> contacto@damianlerda.com
-          </a>
+          <a href="https://wa.me/543572532366" target="_blank" rel="noopener" class="flex items-center gap-3 text-subtle text-[13px] hover:text-white transition-colors"><i class="fab fa-whatsapp w-4 text-center"></i> WhatsApp</a>
+          <a href="https://instagram.com/damianlerdaautos" target="_blank" rel="noopener" class="flex items-center gap-3 text-subtle text-[13px] hover:text-white transition-colors"><i class="fab fa-instagram w-4 text-center"></i> Instagram</a>
+          <a href="mailto:contacto@damianlerda.com" class="flex items-center gap-3 text-subtle text-[13px] hover:text-white transition-colors"><i class="fas fa-envelope w-4 text-center"></i> contacto@damianlerda.com</a>
         </div>
       </div>
       <div>
         <h4 class="font-medium text-[11px] uppercase tracking-[3px] mb-5 text-muted">Ubicación</h4>
-        <p class="text-subtle text-[13px] leading-relaxed flex items-start gap-2">
-          <i class="fas fa-map-marker-alt mt-0.5"></i> Córdoba, Argentina
-        </p>
+        <p class="text-subtle text-[13px] leading-relaxed flex items-start gap-2"><i class="fas fa-map-marker-alt mt-0.5"></i> Córdoba, Argentina</p>
       </div>
     </div>
     <div class="mt-12 pt-7 border-t border-border text-center">
@@ -681,20 +608,300 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 </footer>
 
 <script>
-const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+/* ── Vehicle Data Array ── */
+const WA = '543572532366';
+const vehicles = [
+  {
+    id: 1,
+    brand: 'Peugeot',
+    model: '208 Allure',
+    version: 'Allure 1.6 Tiptronic',
+    year: 2023,
+    km: '22.000 km',
+    price: '$18.900.000',
+    transmission: 'Automática 6 vel.',
+    fuel: 'Nafta',
+    engine: '1.6 VTi 115 CV',
+    color: 'Blanco Nacré',
+    condition: 'Excelente',
+    location: 'Córdoba, Argentina',
+    finance: true,
+    type: 'Hatchback',
+    description: 'Unidad en excelente estado con muy pocos kilómetros. Interior impecable, service oficial al día y cubiertas nuevas. Equipamiento completo con pantalla táctil, cámara de retroceso y control de estabilidad.',
+    benefits: ['Service oficial al día', 'Cubiertas nuevas', 'Único dueño', 'Libre de deuda'],
+    images: [
+      'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=900&q=80',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80',
+      'https://images.unsplash.com/photo-1542362567-b07e54358753?w=900&q=80',
+      'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=900&q=80'
+    ]
+  },
+  {
+    id: 2,
+    brand: 'Volkswagen',
+    model: 'Vento',
+    version: 'Highline 1.4 TSI',
+    year: 2022,
+    km: '38.000 km',
+    price: '$22.500.000',
+    transmission: 'Automática DSG 6 vel.',
+    fuel: 'Nafta',
+    engine: '1.4 TSI 150 CV',
+    color: 'Gris Platino',
+    condition: 'Muy bueno',
+    location: 'Córdoba, Argentina',
+    finance: true,
+    type: 'Sedán',
+    description: 'Volkswagen Vento Highline con motor TSI y caja DSG. Techo solar, butacas de cuero, climatizador bi-zona, asistente de estacionamiento y llantas de aleación 17". Mantenimiento al día en concesionario oficial.',
+    benefits: ['Techo solar panorámico', 'Butacas de cuero', 'Service en concesionario', 'Sin detalles de chapa'],
+    images: [
+      'https://images.unsplash.com/photo-1606611013016-969c19ba27b5?w=900&q=80',
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80',
+      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=900&q=80',
+      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=900&q=80'
+    ]
+  },
+  {
+    id: 3,
+    brand: 'Jeep',
+    model: 'Renegade',
+    version: 'Sport 1.8 AT',
+    year: 2023,
+    km: '28.000 km',
+    price: '$26.200.000',
+    transmission: 'Automática 6 vel.',
+    fuel: 'Nafta',
+    engine: '1.8 E.torQ 130 CV',
+    color: 'Negro Sólido',
+    condition: 'Excelente',
+    location: 'Córdoba, Argentina',
+    finance: false,
+    type: 'SUV',
+    description: 'Jeep Renegade Sport con diseño icónico y gran versatilidad. Ideal para ciudad y ruta. Pantalla Uconnect, control de tracción, aire acondicionado, dirección asistida y cierre centralizado.',
+    benefits: ['Ideal ciudad y ruta', 'Muy buen consumo', 'Mantenimiento económico', 'Pintura original'],
+    images: [
+      'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=900&q=80',
+      'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=900&q=80',
+      'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80',
+      'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=900&q=80'
+    ]
+  },
+  {
+    id: 4,
+    brand: 'Changan',
+    model: 'CS55 Plus',
+    version: 'Luxury 1.5T DCT',
+    year: 2024,
+    km: '12.000 km',
+    price: '$29.800.000',
+    transmission: 'Automática DCT 7 vel.',
+    fuel: 'Nafta',
+    engine: '1.5 Turbo 181 CV',
+    color: 'Gris Oscuro',
+    condition: 'Como nuevo',
+    location: 'Córdoba, Argentina',
+    finance: true,
+    type: 'SUV',
+    description: 'SUV prácticamente nueva, versión full con techo panorámico, pantalla de 12.3", cámara 360°, asientos calefaccionados, arranque por botón y frenado autónomo de emergencia. Garantía de fábrica vigente.',
+    benefits: ['Garantía de fábrica', 'Cámara 360°', 'Techo panorámico', 'Frenado autónomo'],
+    images: [
+      'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80',
+      'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=900&q=80',
+      'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=900&q=80',
+      'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900&q=80'
+    ]
+  },
+  {
+    id: 5,
+    brand: 'Fiat',
+    model: 'Cronos',
+    version: 'Precision 1.8 AT',
+    year: 2023,
+    km: '19.000 km',
+    price: '$16.400.000',
+    transmission: 'Automática 6 vel.',
+    fuel: 'Nafta',
+    engine: '1.8 E.torQ 130 CV',
+    color: 'Blanco Banchisa',
+    condition: 'Muy bueno',
+    location: 'Córdoba, Argentina',
+    finance: true,
+    type: 'Sedán',
+    description: 'Fiat Cronos Precision full, versión más completa de la gama. Pantalla de 7", climatizador automático, sensor de estacionamiento, control de crucero y tapizado de cuero. Excelente relación precio-equipamiento.',
+    benefits: ['Versión full', 'Muy económico', 'Mantenimiento accesible', 'Service al día'],
+    images: [
+      'https://images.unsplash.com/photo-1583267746897-2cf415887172?w=900&q=80',
+      'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=900&q=80',
+      'https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=900&q=80',
+      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&q=80'
+    ]
+  },
+  {
+    id: 6,
+    brand: 'Volkswagen',
+    model: 'Taos',
+    version: 'Comfortline 1.4 TSI',
+    year: 2022,
+    km: '41.000 km',
+    price: '$31.500.000',
+    transmission: 'Automática 6 vel.',
+    fuel: 'Nafta',
+    engine: '1.4 TSI 150 CV',
+    color: 'Azul Reef',
+    condition: 'Muy bueno',
+    location: 'Córdoba, Argentina',
+    finance: false,
+    type: 'SUV',
+    description: 'SUV de VW con excelente espacio interior y baúl. Motor TSI eficiente con potencia de sobra. Equipada con ACC, Lane Assist, pantalla de 10", Apple CarPlay/Android Auto inalámbrico y cámara trasera.',
+    benefits: ['ACC y Lane Assist', 'Gran baúl 498 lts', 'Conectividad inalámbrica', 'Libre de deuda'],
+    images: [
+      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=900&q=80',
+      'https://images.unsplash.com/photo-1549317661-bd32c8ce0637?w=900&q=80',
+      'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=900&q=80',
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900&q=80'
+    ]
+  }
+];
 
-const nav=document.getElementById('navbar');
-window.addEventListener('scroll',()=>{
-  const y=window.scrollY;
-  if(y>60){
-    nav.classList.add('bg-dark/95','nav-blur','border-b','border-border');
-    nav.querySelector('div').classList.replace('py-5','py-3');
-  }else{
-    nav.classList.remove('bg-dark/95','nav-blur','border-b','border-border');
-    nav.querySelector('div').classList.replace('py-3','py-5');
+/* ── Render Vehicle Cards ── */
+function renderCards() {
+  const grid = document.getElementById('vehicleGrid');
+  grid.innerHTML = vehicles.map((v, i) => {
+    const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent('Hola Damián, me interesa el ' + v.brand + ' ' + v.model + ' ' + v.year)}`;
+    const delay = (i % 3) * 0.04;
+    return `
+    <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:${delay}s">
+      <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openModal(${v.id})">
+        <img src="${v.images[0]}" alt="${v.brand} ${v.model}" class="w-full h-full object-cover vehicle-img" loading="lazy">
+        ${v.finance ? '<div class="absolute top-4 left-4"><span class="bg-white/90 text-dark text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm">Financiación disponible</span></div>' : ''}
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark/60 to-transparent"></div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-3 mb-3">
+          <div>
+            <h3 class="font-display text-xl font-medium tracking-tight">${v.brand} ${v.model}</h3>
+            <p class="text-muted text-[12px] mt-0.5">${v.version}</p>
+          </div>
+          <span class="text-[10px] text-muted uppercase tracking-wider bg-white/[.04] border border-border px-2 py-1 rounded-md flex-shrink-0">${v.type}</span>
+        </div>
+        <div class="flex items-center gap-4 text-[12px] text-muted mb-4">
+          <span class="flex items-center gap-1.5"><i class="fas fa-calendar-alt text-[10px] text-subtle"></i> ${v.year}</span>
+          <span class="flex items-center gap-1.5"><i class="fas fa-road text-[10px] text-subtle"></i> ${v.km}</span>
+          <span class="flex items-center gap-1.5"><i class="fas fa-gas-pump text-[10px] text-subtle"></i> ${v.fuel}</span>
+        </div>
+        <div class="border-t border-border pt-4 flex items-center justify-between gap-3">
+          <span class="text-white font-display text-[1.35rem] font-medium">${v.price}</span>
+          <div class="flex gap-2">
+            <button onclick="openModal(${v.id})" class="btn-outline px-3.5 py-2 rounded-full text-[11px] font-medium flex items-center gap-1.5">
+              <i class="fas fa-expand text-[9px]"></i> Ver más
+            </button>
+            <a href="${waUrl}" target="_blank" rel="noopener" class="bg-[#25D366] hover:bg-[#20bd5a] text-white px-3.5 py-2 rounded-full text-[11px] font-medium flex items-center gap-1.5 transition-colors">
+              <i class="fab fa-whatsapp text-[13px]"></i> Consultar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
+}
+
+/* ── Modal Logic ── */
+let currentVehicle = null;
+let currentImgIdx = 0;
+
+function openModal(id) {
+  currentVehicle = vehicles.find(v => v.id === id);
+  if (!currentVehicle) return;
+  currentImgIdx = 0;
+  const v = currentVehicle;
+  const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent('Hola Damián, me interesa el ' + v.brand + ' ' + v.model + ' ' + v.year)}`;
+
+  document.getElementById('galleryImg').src = v.images[0];
+  document.getElementById('galleryImg').alt = v.brand + ' ' + v.model;
+  document.getElementById('galleryThumbs').innerHTML = v.images.map((img, i) =>
+    `<div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"><img src="${img}" alt="Foto ${i+1}" loading="lazy"></div>`
+  ).join('');
+
+  document.getElementById('modalTitle').textContent = v.brand + ' ' + v.model;
+  document.getElementById('modalSubtitle').textContent = v.version + ' · ' + v.year + ' · ' + v.km;
+  document.getElementById('modalPrice').textContent = v.price;
+  document.getElementById('modalFinance').textContent = v.finance ? 'Financiación disponible' : '';
+  document.getElementById('modalDesc').textContent = v.description;
+
+  const specs = [
+    { icon: 'fa-car', label: 'Marca / Modelo', value: v.brand + ' ' + v.model },
+    { icon: 'fa-calendar-alt', label: 'Año', value: v.year },
+    { icon: 'fa-road', label: 'Kilometraje', value: v.km },
+    { icon: 'fa-cogs', label: 'Transmisión', value: v.transmission },
+    { icon: 'fa-gas-pump', label: 'Combustible', value: v.fuel },
+    { icon: 'fa-tachometer-alt', label: 'Motor', value: v.engine },
+    { icon: 'fa-palette', label: 'Color', value: v.color },
+    { icon: 'fa-check-circle', label: 'Estado', value: v.condition },
+    { icon: 'fa-map-marker-alt', label: 'Ubicación', value: v.location },
+    { icon: 'fa-tag', label: 'Precio', value: v.price }
+  ];
+  document.getElementById('modalSpecs').innerHTML = specs.map(s =>
+    `<div class="spec-item"><div class="spec-icon"><i class="fas ${s.icon}"></i></div><div><div class="spec-label">${s.label}</div><div class="spec-value">${s.value}</div></div></div>`
+  ).join('');
+
+  document.getElementById('modalBenefits').innerHTML = v.benefits.map(b =>
+    `<div class="flex items-center gap-2.5"><div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-accent text-[8px]"></i></div><span class="text-offwhite text-[13px]">${b}</span></div>`
+  ).join('');
+
+  document.getElementById('modalWaBtn').href = waUrl;
+  document.getElementById('modalWaText').textContent = 'Consultar por el ' + v.brand + ' ' + v.model + ' ' + v.year;
+
+  document.getElementById('modalOverlay').classList.add('active');
+  document.getElementById('modalContainer').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.getElementById('modalContainer').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function goToSlide(idx) {
+  if (!currentVehicle) return;
+  currentImgIdx = idx;
+  document.getElementById('galleryImg').src = currentVehicle.images[idx];
+  document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+}
+function galleryPrev() {
+  if (!currentVehicle) return;
+  currentImgIdx = (currentImgIdx - 1 + currentVehicle.images.length) % currentVehicle.images.length;
+  goToSlide(currentImgIdx);
+}
+function galleryNext() {
+  if (!currentVehicle) return;
+  currentImgIdx = (currentImgIdx + 1) % currentVehicle.images.length;
+  goToSlide(currentImgIdx);
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowLeft') galleryPrev(); if (e.key === 'ArrowRight') galleryNext(); });
+
+/* ── Scroll Observer ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+}, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ── Navbar ── */
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.classList.add('bg-dark/95', 'nav-blur', 'border-b', 'border-border');
+    nav.querySelector('div').classList.replace('py-5', 'py-3');
+  } else {
+    nav.classList.remove('bg-dark/95', 'nav-blur', 'border-b', 'border-border');
+    nav.querySelector('div').classList.replace('py-3', 'py-5');
   }
 });
+
+/* ── Init ── */
+renderCards();
 </script>
 </body>
 </html>
