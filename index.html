@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Damián Lerda Automotores | Autos bien elegidos. Negocios bien cerrados.</title>
 <meta name="description" content="Tu contacto para comprar o vender autos en Córdoba. Atención directa, autos seleccionados y gestión simple, rápida y segura.">
+<link rel="icon" href="img/logo.jpg" type="image/jpeg">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,43 +21,27 @@ body{font-family:'DM Sans',sans-serif;background:#0A0A0A;color:#fff;overflow-x:h
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:#0A0A0A}
 ::-webkit-scrollbar-thumb{background:#222;border-radius:3px}
-
 .fade-up{opacity:0;transform:translateY(35px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
-
 .hero-overlay{background:linear-gradient(180deg,rgba(10,10,10,.3) 0%,rgba(10,10,10,.5) 40%,rgba(10,10,10,.92) 75%,#0A0A0A 100%)}
-
 .card-hover{transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s ease,box-shadow .4s ease}
 .card-hover:hover{transform:translateY(-4px);border-color:#333;box-shadow:0 24px 64px rgba(0,0,0,.4)}
-
 .vehicle-img{transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .group:hover .vehicle-img{transform:scale(1.04)}
-
 .nav-blur{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
-
 .btn-primary{background:#fff;color:#0A0A0A;font-weight:600;transition:all .3s ease}
 .btn-primary:hover{background:#E8E8E8;box-shadow:0 8px 32px rgba(255,255,255,.1);transform:translateY(-1px)}
-
 .btn-outline{border:1px solid #333;color:#fff;transition:all .3s ease}
 .btn-outline:hover{border-color:#666;background:rgba(255,255,255,.04)}
-
 .btn-wa{background:#25D366;color:#fff;font-weight:600;transition:all .3s ease}
 .btn-wa:hover{background:#20bd5a;box-shadow:0 8px 32px rgba(37,211,102,.25);transform:translateY(-1px)}
-
 .pulse-wa{animation:pulseWa 2s infinite}
 @keyframes pulseWa{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.35)}50%{box-shadow:0 0 0 14px rgba(37,211,102,0)}}
-
 .divider-line{width:48px;height:1px;background:linear-gradient(90deg,#C8C0B4,transparent)}
-
 select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23777' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
-
 .script-accent{font-family:'Great Vibes',cursive;color:#C8C0B4}
-
 .grain::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
-
 .usado-gradient{background:linear-gradient(135deg,rgba(200,192,180,.08) 0%,rgba(200,192,180,.02) 100%)}
-
-/* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:60;opacity:0;pointer-events:none;transition:opacity .35s ease}
 .modal-overlay.active{opacity:1;pointer-events:all}
 .modal-container{position:fixed;inset:0;z-index:61;overflow-y:auto;pointer-events:none;opacity:0;transition:opacity .35s ease}
@@ -65,8 +50,6 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .modal-container.active .modal-panel{transform:translateY(0) scale(1)}
 .modal-close{position:absolute;top:1rem;right:1rem;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(10,10,10,.7);backdrop-filter:blur(8px);border:1px solid #333;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s ease;color:#fff}
 .modal-close:hover{background:rgba(255,255,255,.1);border-color:#555}
-
-/* Gallery */
 .gallery-main{position:relative;aspect-ratio:16/10;overflow:hidden;background:#050505}
 .gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .4s ease}
 .gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(10,10,10,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;transition:all .2s ease;font-size:12px}
@@ -78,14 +61,12 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 .gallery-thumb{width:64px;height:48px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all .2s ease;flex-shrink:0;opacity:.5}
 .gallery-thumb.active,.gallery-thumb:hover{border-color:#C8C0B4;opacity:1}
 .gallery-thumb img{width:100%;height:100%;object-fit:cover}
-
-/* Spec grid */
 .spec-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1A1A1A}
 .spec-item:last-child{border-bottom:none}
 .spec-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid #1A1A1A;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#777;font-size:11px}
 .spec-label{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1.5px;line-height:1}
 .spec-value{font-size:13px;color:#E8E8E8;font-weight:500;margin-top:2px}
-
+.gallery-counter{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(10,10,10,.7);backdrop-filter:blur(8px);padding:4px 12px;border-radius:20px;font-size:11px;color:#999;letter-spacing:1px;z-index:5}
 @media(max-width:640px){
   .modal-panel{margin:.5rem;border-radius:1rem}
   .gallery-main{aspect-ratio:4/3}
@@ -100,23 +81,19 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
   <i class="fab fa-whatsapp text-white text-2xl"></i>
 </a>
 
-<!-- Modal Overlay -->
+<!-- Modal -->
 <div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
 <div id="modalContainer" class="modal-container">
   <div class="modal-panel" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
-      <i class="fas fa-times text-sm"></i>
-    </button>
-    <!-- Gallery -->
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar"><i class="fas fa-times text-sm"></i></button>
     <div class="gallery-main" id="galleryMain">
       <img id="galleryImg" src="" alt="">
       <button class="gallery-nav prev" onclick="galleryPrev()"><i class="fas fa-chevron-left"></i></button>
       <button class="gallery-nav next" onclick="galleryNext()"><i class="fas fa-chevron-right"></i></button>
+      <div class="gallery-counter" id="galleryCounter"></div>
     </div>
     <div class="gallery-thumbs" id="galleryThumbs"></div>
-    <!-- Content -->
     <div class="p-6 md:p-8">
-      <!-- Header -->
       <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
         <div>
           <h2 id="modalTitle" class="font-display text-2xl md:text-3xl font-medium tracking-tight"></h2>
@@ -127,21 +104,16 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
           <span id="modalFinance" class="text-[11px] text-accent uppercase tracking-wider font-medium mt-1 block"></span>
         </div>
       </div>
-      <!-- Description -->
       <p id="modalDesc" class="text-muted text-[14px] leading-relaxed mb-8 border-b border-border pb-8"></p>
-      <!-- Specs Grid -->
       <h3 class="text-[11px] text-muted uppercase tracking-[3px] font-medium mb-4">Especificaciones técnicas</h3>
       <div id="modalSpecs" class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 mb-8"></div>
-      <!-- Benefits -->
       <div class="bg-darker rounded-xl border border-border p-5 mb-8">
         <h3 class="text-[11px] text-muted uppercase tracking-[3px] font-medium mb-4">Incluye</h3>
         <div id="modalBenefits" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
       </div>
-      <!-- CTA -->
-      <a id="modalWaBtn" href="" target="_blank" rel="noopener"
-         class="btn-wa w-full py-4 rounded-xl text-[15px] flex items-center justify-center gap-3">
+      <a id="modalWaBtn" href="" target="_blank" rel="noopener" class="btn-wa w-full py-4 rounded-xl text-[15px] flex items-center justify-center gap-3">
         <i class="fab fa-whatsapp text-xl"></i>
-        <span id="modalWaText">Consultar este vehículo</span>
+        <span id="modalWaText"></span>
       </a>
       <p class="text-center text-subtle text-[11px] mt-3">Respuesta inmediata · Sin compromiso</p>
     </div>
@@ -152,7 +124,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500">
   <div class="max-w-[1200px] mx-auto px-6 py-5 flex items-center justify-between">
     <a href="#" class="flex items-center gap-3 group">
-      <img src="img/logo.jpg" alt="Damián Lerda Automotores" class="h-10 w-10 rounded-full object-cover border border-dimmed group-hover:border-subtle transition-colors">
+      <img src="img/logo.jpg" alt="Damián Lerda Automotores" class="h-10 w-10 rounded-full object-contain border border-dimmed group-hover:border-subtle transition-colors">
       <div class="hidden sm:block">
         <span class="font-script text-[22px] text-white leading-none">Damián Lerda</span>
         <span class="block text-[9px] text-muted uppercase tracking-[4px] mt-0.5 font-body">Automotores</span>
@@ -174,14 +146,17 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 <!-- Hero -->
 <section class="relative min-h-screen flex items-end pb-20 md:items-center md:pb-0">
   <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1920&q=80" alt="Auto premium" class="w-full h-full object-cover">
+    <img src="img/Jeep-renegade-1.jpg" alt="Jeep Renegade" class="w-full h-full object-cover">
     <div class="hero-overlay absolute inset-0"></div>
   </div>
   <div class="relative z-10 max-w-[1200px] mx-auto px-6 w-full md:pt-28">
     <div class="max-w-2xl">
-      <div class="flex items-center gap-3 mb-8 fade-up">
-        <div class="divider-line"></div>
-        <span class="text-muted text-[11px] uppercase tracking-[4px] font-medium">Córdoba · Argentina</span>
+      <div class="flex items-center gap-4 mb-8 fade-up">
+        <img src="img/logo.jpg" alt="DL" class="w-14 h-14 rounded-full object-contain border border-dimmed/50">
+        <div>
+          <span class="font-script text-2xl text-white leading-none">Damián Lerda</span>
+          <span class="block text-[9px] text-muted uppercase tracking-[4px] mt-0.5">Automotores · Córdoba</span>
+        </div>
       </div>
       <h1 class="font-display text-[2.5rem] sm:text-[3.25rem] md:text-[4rem] lg:text-[4.5rem] font-light leading-[1.08] mb-3 fade-up tracking-tight" style="transition-delay:.08s">
         Tu contacto para comprar o vender autos en Córdoba
@@ -193,9 +168,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         Atención directa, autos seleccionados y una gestión simple, rápida y segura.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 fade-up" style="transition-delay:.28s">
-        <a href="#vehiculos" class="btn-primary px-8 py-4 rounded-full text-center text-[15px]">
-          Ver vehículos disponibles
-        </a>
+        <a href="#vehiculos" class="btn-primary px-8 py-4 rounded-full text-center text-[15px]">Ver vehículos disponibles</a>
         <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
            class="btn-outline px-8 py-4 rounded-full text-center text-[15px] inline-flex items-center justify-center gap-2">
           <i class="fab fa-whatsapp text-[#25D366]"></i> Recibir asesoramiento
@@ -219,54 +192,50 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
           <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-subtle focus:outline-none transition-colors cursor-pointer">
             <option value="">Seleccionar rango</option>
             <option>Hasta $10.000.000</option>
-            <option>$10.000.000 – $20.000.000</option>
-            <option>$20.000.000 – $35.000.000</option>
-            <option>Más de $35.000.000</option>
+            <option>$10.000.000 – $15.000.000</option>
+            <option>$15.000.000 – $25.000.000</option>
+            <option>Más de $25.000.000</option>
           </select>
         </div>
         <div>
           <label class="block text-[10px] text-muted uppercase tracking-[2px] mb-2 font-medium">Marca</label>
           <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-subtle focus:outline-none transition-colors cursor-pointer">
             <option value="">Todas las marcas</option>
-            <option>Peugeot</option>
-            <option>Volkswagen</option>
-            <option>Jeep</option>
-            <option>Changan</option>
             <option>Fiat</option>
-            <option>Toyota</option>
-            <option>Ford</option>
-            <option>Chevrolet</option>
+            <option>Jeep</option>
+            <option>MINI</option>
+            <option>Renault</option>
           </select>
         </div>
         <div>
           <label class="block text-[10px] text-muted uppercase tracking-[2px] mb-2 font-medium">Tipo de vehículo</label>
           <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-subtle focus:outline-none transition-colors cursor-pointer">
             <option value="">Todos los tipos</option>
-            <option>Sedán</option>
+            <option>Hatchback</option>
             <option>SUV</option>
             <option>Pickup</option>
-            <option>Hatchback</option>
-            <option>Crossover</option>
+            <option>Utilitario</option>
+            <option>Coupé</option>
           </select>
         </div>
         <div>
           <label class="block text-[10px] text-muted uppercase tracking-[2px] mb-2 font-medium">Año</label>
           <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-subtle focus:outline-none transition-colors cursor-pointer">
             <option value="">Cualquier año</option>
-            <option>2025</option>
-            <option>2024</option>
-            <option>2023</option>
-            <option>2022</option>
             <option>2021</option>
-            <option>2020 o anterior</option>
+            <option>2018</option>
+            <option>2016</option>
+            <option>2015</option>
+            <option>2008</option>
           </select>
         </div>
         <div>
-          <label class="block text-[10px] text-muted uppercase tracking-[2px] mb-2 font-medium">Financiación</label>
+          <label class="block text-[10px] text-muted uppercase tracking-[2px] mb-2 font-medium">Combustible</label>
           <select class="w-full bg-darker border border-border rounded-xl px-4 py-3.5 text-white text-sm focus:border-subtle focus:outline-none transition-colors cursor-pointer">
             <option value="">Indistinto</option>
-            <option>Con financiación</option>
-            <option>Solo contado</option>
+            <option>Nafta</option>
+            <option>Nafta/GNC</option>
+            <option>Diésel</option>
           </select>
         </div>
         <div class="flex items-end">
@@ -289,30 +258,22 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       <div class="bg-card border border-border rounded-2xl p-7 card-hover fade-up" style="transition-delay:.04s">
-        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5">
-          <i class="fas fa-shield-alt text-offwhite text-sm"></i>
-        </div>
+        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5"><i class="fas fa-shield-alt text-offwhite text-sm"></i></div>
         <h3 class="font-display text-lg font-medium mb-2.5 tracking-tight">Autos seleccionados</h3>
         <p class="text-muted text-[13px] leading-relaxed">Cada vehículo pasa por una revisión exhaustiva. Solo ofrecemos unidades confiables y en condiciones.</p>
       </div>
       <div class="bg-card border border-border rounded-2xl p-7 card-hover fade-up" style="transition-delay:.08s">
-        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5">
-          <i class="fas fa-hand-holding-usd text-offwhite text-sm"></i>
-        </div>
+        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5"><i class="fas fa-hand-holding-usd text-offwhite text-sm"></i></div>
         <h3 class="font-display text-lg font-medium mb-2.5 tracking-tight">Financiación accesible</h3>
         <p class="text-muted text-[13px] leading-relaxed">Trabajamos con opciones de financiamiento para que accedas al auto que buscás sin complicaciones.</p>
       </div>
       <div class="bg-card border border-border rounded-2xl p-7 card-hover fade-up" style="transition-delay:.12s">
-        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5">
-          <i class="fas fa-file-signature text-offwhite text-sm"></i>
-        </div>
+        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5"><i class="fas fa-file-signature text-offwhite text-sm"></i></div>
         <h3 class="font-display text-lg font-medium mb-2.5 tracking-tight">Gestión automotor ágil</h3>
         <p class="text-muted text-[13px] leading-relaxed">Nos encargamos de transferencias, documentación y trámites. Vos no perdés tiempo.</p>
       </div>
       <div class="bg-card border border-border rounded-2xl p-7 card-hover fade-up" style="transition-delay:.16s">
-        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5">
-          <i class="fas fa-exchange-alt text-offwhite text-sm"></i>
-        </div>
+        <div class="w-11 h-11 rounded-xl bg-white/[.04] border border-border flex items-center justify-center mb-5"><i class="fas fa-exchange-alt text-offwhite text-sm"></i></div>
         <h3 class="font-display text-lg font-medium mb-2.5 tracking-tight">Tomamos tu usado</h3>
         <p class="text-muted text-[13px] leading-relaxed">Valuamos tu vehículo actual y lo tomamos como parte de pago. El cambio es simple.</p>
       </div>
@@ -320,7 +281,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
   </div>
 </section>
 
-<!-- Featured Vehicles (Data-Driven) -->
+<!-- Featured Vehicles -->
 <section id="vehiculos" class="py-20 md:py-28 bg-darker">
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14 fade-up">
@@ -328,7 +289,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         <span class="text-muted text-[11px] uppercase tracking-[4px] font-medium">Stock disponible</span>
         <h2 class="font-display text-3xl md:text-[3.25rem] font-light mt-4 tracking-tight">Vehículos destacados</h2>
       </div>
-      <a href="#" class="text-muted text-[13px] hover:text-white transition-colors flex items-center gap-1.5">Ver todo el stock <i class="fas fa-arrow-right text-[10px]"></i></a>
+      <span class="text-muted text-[13px] flex items-center gap-1.5"><i class="fas fa-circle text-accent text-[6px]"></i> 6 unidades disponibles</span>
     </div>
     <div id="vehicleGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </div>
@@ -345,24 +306,9 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
           <p class="script-accent text-2xl md:text-3xl mb-6">El cambio más simple.</p>
           <p class="text-muted text-[15px] leading-relaxed mb-8 max-w-md">Valuamos tu vehículo de forma justa y transparente. Lo tomamos como parte de pago para que el cambio sea lo más fácil posible.</p>
           <div class="space-y-4 mb-10">
-            <div class="flex items-center gap-3">
-              <div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-check text-accent text-[9px]"></i>
-              </div>
-              <span class="text-offwhite text-[14px]">Tasación inmediata y sin compromiso</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-check text-accent text-[9px]"></i>
-              </div>
-              <span class="text-offwhite text-[14px]">Aceptamos todas las marcas y modelos</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-check text-accent text-[9px]"></i>
-              </div>
-              <span class="text-offwhite text-[14px]">Nos encargamos de toda la documentación</span>
-            </div>
+            <div class="flex items-center gap-3"><div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-accent text-[9px]"></i></div><span class="text-offwhite text-[14px]">Tasación inmediata y sin compromiso</span></div>
+            <div class="flex items-center gap-3"><div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-accent text-[9px]"></i></div><span class="text-offwhite text-[14px]">Aceptamos todas las marcas y modelos</span></div>
+            <div class="flex items-center gap-3"><div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-accent text-[9px]"></i></div><span class="text-offwhite text-[14px]">Nos encargamos de toda la documentación</span></div>
           </div>
           <div class="flex flex-col sm:flex-row gap-3">
             <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago" target="_blank" rel="noopener"
@@ -372,7 +318,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
           </div>
         </div>
         <div class="relative min-h-[320px] lg:min-h-0">
-          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0637?w=900&q=80" alt="Entrega de auto" class="absolute inset-0 w-full h-full object-cover">
+          <img src="img/Fiat-toro-frdm-1.jpg" alt="Fiat Toro Freedom" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/30 to-transparent lg:from-dark/60"></div>
         </div>
       </div>
@@ -390,30 +336,22 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-5 relative">
       <div class="hidden md:block absolute top-10 left-[14%] right-[14%] h-px bg-border"></div>
       <div class="text-center fade-up relative" style="transition-delay:.04s">
-        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
-          <span class="font-display text-white/60 text-xl font-light">01</span>
-        </div>
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10"><span class="font-display text-white/60 text-xl font-light">01</span></div>
         <h3 class="font-display text-lg font-medium mb-2 tracking-tight">Elegís tu próximo auto</h3>
         <p class="text-muted text-[13px] leading-relaxed max-w-[200px] mx-auto">Explorá nuestro stock y encontrá el vehículo que se adapta a lo que necesitás.</p>
       </div>
       <div class="text-center fade-up relative" style="transition-delay:.08s">
-        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
-          <span class="font-display text-white/60 text-xl font-light">02</span>
-        </div>
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10"><span class="font-display text-white/60 text-xl font-light">02</span></div>
         <h3 class="font-display text-lg font-medium mb-2 tracking-tight">Evaluamos tu usado</h3>
         <p class="text-muted text-[13px] leading-relaxed max-w-[200px] mx-auto">Tasamos tu auto actual de manera justa, transparente y sin compromiso.</p>
       </div>
       <div class="text-center fade-up relative" style="transition-delay:.12s">
-        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
-          <span class="font-display text-white/60 text-xl font-light">03</span>
-        </div>
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10"><span class="font-display text-white/60 text-xl font-light">03</span></div>
         <h3 class="font-display text-lg font-medium mb-2 tracking-tight">Gestionamos la financiación</h3>
         <p class="text-muted text-[13px] leading-relaxed max-w-[200px] mx-auto">Armamos un plan de pago real que se ajuste a tus posibilidades.</p>
       </div>
       <div class="text-center fade-up relative" style="transition-delay:.16s">
-        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10">
-          <span class="font-display text-white/60 text-xl font-light">04</span>
-        </div>
+        <div class="w-20 h-20 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 relative z-10"><span class="font-display text-white/60 text-xl font-light">04</span></div>
         <h3 class="font-display text-lg font-medium mb-2 tracking-tight">Cerrás con seguridad</h3>
         <p class="text-muted text-[13px] leading-relaxed max-w-[200px] mx-auto">Documentación en regla, transferencia incluida y un proceso profesional.</p>
       </div>
@@ -430,16 +368,12 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         <p class="text-muted text-[12px] mt-3 uppercase tracking-[3px]">Operaciones concretadas</p>
       </div>
       <div class="text-center p-10 bg-card border border-border rounded-2xl">
-        <div class="w-14 h-14 rounded-full bg-white/[.04] border border-border flex items-center justify-center mx-auto mb-3">
-          <i class="fas fa-user text-white/60 text-xl"></i>
-        </div>
+        <div class="w-14 h-14 rounded-full bg-white/[.04] border border-border flex items-center justify-center mx-auto mb-3"><i class="fas fa-user text-white/60 text-xl"></i></div>
         <h3 class="font-display text-xl font-medium tracking-tight">Atención directa</h3>
         <p class="text-muted text-[13px] mt-2 leading-relaxed">Hablás directamente con Damián. Sin intermediarios, sin demoras.</p>
       </div>
       <div class="text-center p-10 bg-card border border-border rounded-2xl">
-        <div class="w-14 h-14 rounded-full bg-white/[.04] border border-border flex items-center justify-center mx-auto mb-3">
-          <i class="fas fa-comments text-white/60 text-xl"></i>
-        </div>
+        <div class="w-14 h-14 rounded-full bg-white/[.04] border border-border flex items-center justify-center mx-auto mb-3"><i class="fas fa-comments text-white/60 text-xl"></i></div>
         <h3 class="font-display text-xl font-medium tracking-tight">Asesoramiento real</h3>
         <p class="text-muted text-[13px] mt-2 leading-relaxed">Te guiamos en cada paso para que tomes la mejor decisión posible.</p>
       </div>
@@ -457,19 +391,15 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:.04s">
-        <div class="flex gap-0.5 mb-5">
-          <i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i>
-        </div>
-        <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"Compré un Vento con Damián y fue todo impecable. Me asesoró con cada detalle, se encargó de la transferencia y me consiguió financiación en 48 horas. Totalmente recomendable."</p>
+        <div class="flex gap-0.5 mb-5"><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i></div>
+        <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"Compré una Toro con Damián y fue todo impecable. Me asesoró con cada detalle, se encargó de la transferencia y me consiguió financiación rápida. Totalmente recomendable."</p>
         <div class="flex items-center gap-3 pt-5 border-t border-border">
           <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center"><span class="text-muted font-medium text-[12px]">ML</span></div>
           <div><span class="text-white text-[13px] font-medium block">Martín López</span><span class="text-subtle text-[11px]">Córdoba Capital</span></div>
         </div>
       </div>
       <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:.08s">
-        <div class="flex gap-0.5 mb-5">
-          <i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i>
-        </div>
+        <div class="flex gap-0.5 mb-5"><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i></div>
         <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"Vendí mi auto usado a través de Damián y conseguí mejor precio del que esperaba. Todo muy rápido, transparente y profesional. Ya le recomendé a varios conocidos."</p>
         <div class="flex items-center gap-3 pt-5 border-t border-border">
           <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center"><span class="text-muted font-medium text-[12px]">CF</span></div>
@@ -477,10 +407,8 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
         </div>
       </div>
       <div class="bg-card border border-border rounded-2xl p-8 fade-up" style="transition-delay:.12s">
-        <div class="flex gap-0.5 mb-5">
-          <i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i>
-        </div>
-        <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"La experiencia fue excelente de principio a fin. Me consiguió exactamente el auto que buscaba, con la documentación al día y un trato muy honesto. Un profesional de verdad."</p>
+        <div class="flex gap-0.5 mb-5"><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i><i class="fas fa-star text-accent text-[11px]"></i></div>
+        <p class="text-offwhite text-[14px] leading-[1.7] mb-7">"Excelente experiencia de principio a fin. Me consiguió la Renegade que buscaba, con la documentación al día y un trato muy honesto. Un profesional de verdad."</p>
         <div class="flex items-center gap-3 pt-5 border-t border-border">
           <div class="w-9 h-9 rounded-full bg-white/[.06] flex items-center justify-center"><span class="text-muted font-medium text-[12px]">SR</span></div>
           <div><span class="text-white text-[13px] font-medium block">Santiago Romero</span><span class="text-subtle text-[11px]">Jesús María</span></div>
@@ -520,7 +448,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
           <div class="space-y-3.5 relative">
             <div class="bg-darker rounded-xl p-4 flex items-center gap-3 border border-border/50">
               <div class="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0"><i class="fab fa-whatsapp text-white text-xs"></i></div>
-              <div class="min-w-0"><span class="text-[10px] text-subtle block">WhatsApp · Ahora</span><p class="text-[13px] text-offwhite mt-0.5 truncate">Hola, quiero consultar por la Jeep Renegade</p></div>
+              <div class="min-w-0"><span class="text-[10px] text-subtle block">WhatsApp · Ahora</span><p class="text-[13px] text-offwhite mt-0.5 truncate">Hola, me interesa la Jeep Renegade 2021</p></div>
             </div>
             <div class="bg-darker rounded-xl p-4 flex items-center gap-3 border border-border/50">
               <div class="w-8 h-8 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0"><i class="fas fa-robot text-white/40 text-[10px]"></i></div>
@@ -528,16 +456,12 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
             </div>
             <div class="bg-darker rounded-xl p-4 flex items-center gap-3 border border-border/50">
               <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center flex-shrink-0"><i class="fab fa-instagram text-white text-[10px]"></i></div>
-              <div class="min-w-0"><span class="text-[10px] text-subtle block">Instagram · 2 min</span><p class="text-[13px] text-offwhite mt-0.5 truncate">Vi el Cronos en tu feed, ¿sigue disponible?</p></div>
+              <div class="min-w-0"><span class="text-[10px] text-subtle block">Instagram · 2 min</span><p class="text-[13px] text-offwhite mt-0.5 truncate">Vi la Toro en tu feed, ¿sigue disponible?</p></div>
             </div>
           </div>
           <div class="mt-5 pt-5 border-t border-border flex items-center justify-between">
             <span class="text-[11px] text-subtle">3 consultas nuevas hoy</span>
-            <div class="flex -space-x-1.5">
-              <div class="w-6 h-6 rounded-full bg-white/10 border-2 border-card"></div>
-              <div class="w-6 h-6 rounded-full bg-white/[.06] border-2 border-card"></div>
-              <div class="w-6 h-6 rounded-full bg-white/[.03] border-2 border-card"></div>
-            </div>
+            <div class="flex -space-x-1.5"><div class="w-6 h-6 rounded-full bg-white/10 border-2 border-card"></div><div class="w-6 h-6 rounded-full bg-white/[.06] border-2 border-card"></div><div class="w-6 h-6 rounded-full bg-white/[.03] border-2 border-card"></div></div>
           </div>
         </div>
       </div>
@@ -549,27 +473,18 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 <section id="contacto" class="py-24 md:py-32 relative overflow-hidden bg-darker">
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/[.015] rounded-full blur-[120px]"></div>
   <div class="relative z-10 max-w-[750px] mx-auto px-6 text-center fade-up">
-    <img src="img/logo.jpg" alt="Damián Lerda Automotores" class="w-20 h-20 rounded-full object-cover mx-auto mb-8 border border-border">
+    <img src="img/logo.jpg" alt="Damián Lerda Automotores" class="w-20 h-20 rounded-full object-contain mx-auto mb-8 border border-border">
     <h2 class="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-light tracking-tight leading-tight mb-3">Encontrá tu próximo auto con la tranquilidad de estar</h2>
     <p class="script-accent text-3xl md:text-4xl mb-8">bien asesorado.</p>
     <p class="text-muted text-base mb-10 max-w-md mx-auto">Contactanos y recibí atención personalizada de principio a fin. Sin compromiso.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener"
-         class="btn-primary px-9 py-4 rounded-full text-[15px] inline-flex items-center justify-center gap-2">
-        <i class="fab fa-whatsapp text-[#25D366] text-lg"></i> Recibir asesoramiento
-      </a>
+      <a href="https://wa.me/543572532366?text=Hola%20Damián%2C%20quiero%20recibir%20asesoramiento" target="_blank" rel="noopener" class="btn-primary px-9 py-4 rounded-full text-[15px] inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp text-[#25D366] text-lg"></i> Recibir asesoramiento</a>
       <a href="#vehiculos" class="btn-outline px-9 py-4 rounded-full text-[15px]">Ver vehículos</a>
     </div>
     <div class="flex flex-col sm:flex-row gap-3 justify-center mt-4">
-      <a href="https://wa.me/543572532366?text=Hola%2C%20quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago" target="_blank" rel="noopener"
-         class="text-muted text-[13px] hover:text-white transition-colors inline-flex items-center justify-center gap-1.5">
-        <i class="fas fa-car text-[10px]"></i> Cotizar mi usado
-      </a>
+      <a href="https://wa.me/543572532366?text=Hola%2C%20quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago" target="_blank" rel="noopener" class="text-muted text-[13px] hover:text-white transition-colors inline-flex items-center justify-center gap-1.5"><i class="fas fa-car text-[10px]"></i> Cotizar mi usado</a>
       <span class="hidden sm:inline text-dimmed">&middot;</span>
-      <a href="https://wa.me/543572532366?text=Hola%2C%20quiero%20consultar%20por%20financiación" target="_blank" rel="noopener"
-         class="text-muted text-[13px] hover:text-white transition-colors inline-flex items-center justify-center gap-1.5">
-        <i class="fas fa-calculator text-[10px]"></i> Solicitar financiación
-      </a>
+      <a href="https://wa.me/543572532366?text=Hola%2C%20quiero%20consultar%20por%20financiación" target="_blank" rel="noopener" class="text-muted text-[13px] hover:text-white transition-colors inline-flex items-center justify-center gap-1.5"><i class="fas fa-calculator text-[10px]"></i> Solicitar financiación</a>
     </div>
   </div>
 </section>
@@ -580,7 +495,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
       <div>
         <div class="flex items-center gap-3 mb-4">
-          <img src="img/logo.jpg" alt="Damián Lerda Automotores" class="h-9 w-9 rounded-full object-cover border border-dimmed">
+          <img src="img/logo.jpg" alt="Damián Lerda Automotores" class="h-12 w-12 rounded-full object-contain border border-dimmed">
           <div>
             <span class="font-script text-xl text-white leading-none">Damián Lerda</span>
             <span class="block text-[9px] text-muted uppercase tracking-[4px] mt-0.5 font-body">Automotores</span>
@@ -608,173 +523,154 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 </footer>
 
 <script>
-/* ── Vehicle Data Array ── */
-const WA = '543572532366';
-const vehicles = [
+const WA='543572532366';
+const vehicles=[
   {
-    id: 1,
-    brand: 'Peugeot',
-    model: '208 Allure',
-    version: 'Allure 1.6 Tiptronic',
-    year: 2023,
-    km: '22.000 km',
-    price: '$18.900.000',
-    transmission: 'Automática 6 vel.',
-    fuel: 'Nafta',
-    engine: '1.6 VTi 115 CV',
-    color: 'Blanco Nacré',
-    condition: 'Excelente',
-    location: 'Córdoba, Argentina',
-    finance: true,
-    type: 'Hatchback',
-    description: 'Unidad en excelente estado con muy pocos kilómetros. Interior impecable, service oficial al día y cubiertas nuevas. Equipamiento completo con pantalla táctil, cámara de retroceso y control de estabilidad.',
-    benefits: ['Service oficial al día', 'Cubiertas nuevas', 'Único dueño', 'Libre de deuda'],
-    images: [
-      'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=900&q=80',
-      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80',
-      'https://images.unsplash.com/photo-1542362567-b07e54358753?w=900&q=80',
-      'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=900&q=80'
-    ]
+    id:1,
+    brand:'Fiat',
+    model:'Palio Attractive 1.4',
+    version:'1.4 Fire Evo',
+    year:2015,
+    km:'115.000 km',
+    price:'$5.000.000 + cuotas',
+    transmission:'Manual',
+    fuel:'Nafta',
+    engine:'1.4 Fire Evo',
+    color:'Gris Plata',
+    condition:'Muy bueno',
+    location:'Córdoba, Argentina',
+    finance:true,
+    type:'Hatchback',
+    description:'Compacto, económico y confiable. Ideal para uso diario con excelente consumo y bajo costo de mantenimiento.',
+    benefits:['Doble airbag','ABS','Aire acondicionado','Dirección asistida'],
+    features:['Motor 1.4 Fire Evo','Aire acondicionado','Dirección asistida','Levantavidrios eléctricos','Excelente consumo','Documentación al día'],
+    waText:'Hola, me interesa el FIAT PALIO ATTRACTIVE 1.4. ¿Sigue disponible?',
+    images:['img/Fiat-palio-1.jpg','img/Fiat-palio-2.jpg','img/Fiat-palio-3.jpg','img/Fiat-palio-4.jpg','img/Fiat-palio-5.jpg','img/Fiat-palio-6.jpg']
   },
   {
-    id: 2,
-    brand: 'Volkswagen',
-    model: 'Vento',
-    version: 'Highline 1.4 TSI',
-    year: 2022,
-    km: '38.000 km',
-    price: '$22.500.000',
-    transmission: 'Automática DSG 6 vel.',
-    fuel: 'Nafta',
-    engine: '1.4 TSI 150 CV',
-    color: 'Gris Platino',
-    condition: 'Muy bueno',
-    location: 'Córdoba, Argentina',
-    finance: true,
-    type: 'Sedán',
-    description: 'Volkswagen Vento Highline con motor TSI y caja DSG. Techo solar, butacas de cuero, climatizador bi-zona, asistente de estacionamiento y llantas de aleación 17". Mantenimiento al día en concesionario oficial.',
-    benefits: ['Techo solar panorámico', 'Butacas de cuero', 'Service en concesionario', 'Sin detalles de chapa'],
-    images: [
-      'https://images.unsplash.com/photo-1606611013016-969c19ba27b5?w=900&q=80',
-      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80',
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=900&q=80',
-      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=900&q=80'
-    ]
+    id:2,
+    brand:'Fiat',
+    model:'Fiorino Evo Top 1.4 GNC',
+    version:'1.4 Fire Evo · GNC',
+    year:2016,
+    km:'180.000 km',
+    price:'$13.500.000',
+    transmission:'Manual',
+    fuel:'Nafta/GNC',
+    engine:'1.4 Fire Evo',
+    color:'Gris Oscuro',
+    condition:'Muy bueno',
+    location:'Córdoba, Argentina',
+    finance:false,
+    type:'Utilitario',
+    description:'La utilitaria ideal para trabajo diario. Económica, práctica y equipada con GNC para reducir costos operativos.',
+    benefits:['GNC instalado','Aire acondicionado','Dirección asistida','Espacio de carga amplio'],
+    features:['Equipo de GNC','Gran capacidad de carga','Aire acondicionado','Dirección asistida','Bajo costo operativo','Lista para trabajar'],
+    waText:'Hola, me interesa la FIAT FIORINO EVO TOP 1.4 GNC. ¿Sigue disponible?',
+    images:['img/Fiat-fiorino-evo-1.jpg','img/Fiat-fiorino-evo-2.jpg','img/Fiat-fiorino-evo-3.jpg','img/Fiat-fiorino-evo-4.jpg','img/Fiat-fiorino-evo-5.jpg']
   },
   {
-    id: 3,
-    brand: 'Jeep',
-    model: 'Renegade',
-    version: 'Sport 1.8 AT',
-    year: 2023,
-    km: '28.000 km',
-    price: '$26.200.000',
-    transmission: 'Automática 6 vel.',
-    fuel: 'Nafta',
-    engine: '1.8 E.torQ 130 CV',
-    color: 'Negro Sólido',
-    condition: 'Excelente',
-    location: 'Córdoba, Argentina',
-    finance: false,
-    type: 'SUV',
-    description: 'Jeep Renegade Sport con diseño icónico y gran versatilidad. Ideal para ciudad y ruta. Pantalla Uconnect, control de tracción, aire acondicionado, dirección asistida y cierre centralizado.',
-    benefits: ['Ideal ciudad y ruta', 'Muy buen consumo', 'Mantenimiento económico', 'Pintura original'],
-    images: [
-      'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=900&q=80',
-      'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=900&q=80',
-      'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80',
-      'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=900&q=80'
-    ]
+    id:3,
+    brand:'Fiat',
+    model:'Toro Freedom AT9 4x4',
+    version:'2.0 Multijet Turbo Diésel · AT9',
+    year:2018,
+    km:'115.000 km',
+    price:'$25.000.000',
+    transmission:'Automática 9 velocidades',
+    fuel:'Diésel',
+    engine:'2.0 Multijet Turbo Diésel',
+    color:'Blanco',
+    condition:'Excelente',
+    location:'Córdoba, Argentina',
+    finance:false,
+    type:'Pickup',
+    description:'Potencia, confort y tecnología en una de las pickups más buscadas del mercado. Ideal para trabajo y viajes.',
+    benefits:['Tracción 4x4','Caja AT9','Barras de techo','Llantas de aleación'],
+    features:['Motor 2.0 Multijet','Caja automática AT9','Tracción 4x4','Llantas de aleación','Barras de techo','Excelente estado'],
+    waText:'Hola, me interesa la FIAT TORO FREEDOM AT9 4X4. ¿Sigue disponible?',
+    images:['img/Fiat-toro-frdm-1.jpg','img/Fiat-toro-frdm-2.jpg','img/Fiat-toro-frdm-3.jpg','img/Fiat-toro-frdm-4.jpg','img/Fiat-toro-frdm-5.jpg','img/Fiat-toro-frdm-6.jpg']
   },
   {
-    id: 4,
-    brand: 'Changan',
-    model: 'CS55 Plus',
-    version: 'Luxury 1.5T DCT',
-    year: 2024,
-    km: '12.000 km',
-    price: '$29.800.000',
-    transmission: 'Automática DCT 7 vel.',
-    fuel: 'Nafta',
-    engine: '1.5 Turbo 181 CV',
-    color: 'Gris Oscuro',
-    condition: 'Como nuevo',
-    location: 'Córdoba, Argentina',
-    finance: true,
-    type: 'SUV',
-    description: 'SUV prácticamente nueva, versión full con techo panorámico, pantalla de 12.3", cámara 360°, asientos calefaccionados, arranque por botón y frenado autónomo de emergencia. Garantía de fábrica vigente.',
-    benefits: ['Garantía de fábrica', 'Cámara 360°', 'Techo panorámico', 'Frenado autónomo'],
-    images: [
-      'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80',
-      'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=900&q=80',
-      'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=900&q=80',
-      'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900&q=80'
-    ]
+    id:4,
+    brand:'MINI',
+    model:'Cooper S 1.6 Turbo',
+    version:'1.6 Turbo · Cooper S',
+    year:2008,
+    km:'115.000 km',
+    price:'$22.000.000',
+    transmission:'Manual',
+    fuel:'Nafta',
+    engine:'1.6 Turbo',
+    color:'Rojo con detalles blancos',
+    condition:'Excelente',
+    location:'Córdoba, Argentina',
+    finance:false,
+    type:'Coupé',
+    description:'Diseño icónico, espíritu deportivo y una conducción divertida. Un clásico moderno que nunca pasa desapercibido.',
+    benefits:['Llantas deportivas','Faros auxiliares','Techo bitono','Detalles Cooper S'],
+    features:['Motor 1.6 Turbo','Diseño deportivo Cooper S','Llantas deportivas','Franjas originales en capot','Excelente terminación','Muy buen estado'],
+    waText:'Hola, me interesa el MINI COOPER S 1.6 TURBO. ¿Sigue disponible?',
+    images:['img/Mini-cooper-s-1.jpg','img/Mini-cooper-s-2.jpg','img/Mini-cooper-s-3.jpg','img/Mini-cooper-s-4.jpg']
   },
   {
-    id: 5,
-    brand: 'Fiat',
-    model: 'Cronos',
-    version: 'Precision 1.8 AT',
-    year: 2023,
-    km: '19.000 km',
-    price: '$16.400.000',
-    transmission: 'Automática 6 vel.',
-    fuel: 'Nafta',
-    engine: '1.8 E.torQ 130 CV',
-    color: 'Blanco Banchisa',
-    condition: 'Muy bueno',
-    location: 'Córdoba, Argentina',
-    finance: true,
-    type: 'Sedán',
-    description: 'Fiat Cronos Precision full, versión más completa de la gama. Pantalla de 7", climatizador automático, sensor de estacionamiento, control de crucero y tapizado de cuero. Excelente relación precio-equipamiento.',
-    benefits: ['Versión full', 'Muy económico', 'Mantenimiento accesible', 'Service al día'],
-    images: [
-      'https://images.unsplash.com/photo-1583267746897-2cf415887172?w=900&q=80',
-      'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=900&q=80',
-      'https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=900&q=80',
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&q=80'
-    ]
+    id:5,
+    brand:'Jeep',
+    model:'Renegade',
+    version:'1.8 E.torQ · AT6',
+    year:2021,
+    km:'75.000 km',
+    price:'$25.500.000',
+    transmission:'Automática AT6',
+    fuel:'Nafta',
+    engine:'1.8 E.torQ',
+    color:'Blanco',
+    condition:'Excelente',
+    location:'Córdoba, Argentina',
+    finance:false,
+    type:'SUV',
+    description:'SUV moderna, cómoda y segura. Ideal para quienes buscan espacio, altura y excelente presencia.',
+    benefits:['Barras de techo','Llantas de aleación','Control de estabilidad','Multimedia integrada'],
+    features:['Motor 1.8 E.torQ','Excelente despeje','Barras de techo','Llantas de aleación','Muy buen equipamiento','Excelente estado'],
+    waText:'Hola, me interesa el JEEP RENEGADE. ¿Sigue disponible?',
+    images:['img/Jeep-renegade-1.jpg','img/Jeep-renegade-2.jpg','img/Jeep-renegade-3.jpg','img/Jeep-renegade-4.jpg','img/Jeep-renegade-5.jpg','img/Jeep-renegade-6.jpg','img/Jeep-renegade-7.jpg','img/Jeep-renegade-8.jpg','img/Jeep-renegade-9.jpg','img/Jeep-renegade-10.jpg']
   },
   {
-    id: 6,
-    brand: 'Volkswagen',
-    model: 'Taos',
-    version: 'Comfortline 1.4 TSI',
-    year: 2022,
-    km: '41.000 km',
-    price: '$31.500.000',
-    transmission: 'Automática 6 vel.',
-    fuel: 'Nafta',
-    engine: '1.4 TSI 150 CV',
-    color: 'Azul Reef',
-    condition: 'Muy bueno',
-    location: 'Córdoba, Argentina',
-    finance: false,
-    type: 'SUV',
-    description: 'SUV de VW con excelente espacio interior y baúl. Motor TSI eficiente con potencia de sobra. Equipada con ACC, Lane Assist, pantalla de 10", Apple CarPlay/Android Auto inalámbrico y cámara trasera.',
-    benefits: ['ACC y Lane Assist', 'Gran baúl 498 lts', 'Conectividad inalámbrica', 'Libre de deuda'],
-    images: [
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=900&q=80',
-      'https://images.unsplash.com/photo-1549317661-bd32c8ce0637?w=900&q=80',
-      'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=900&q=80',
-      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900&q=80'
-    ]
+    id:6,
+    brand:'Renault',
+    model:'Sandero Stepway 1.6 GNC',
+    version:'1.6 16v · GNC',
+    year:2015,
+    km:'150.000 km',
+    price:'$14.500.000',
+    transmission:'Manual',
+    fuel:'Nafta/GNC',
+    engine:'1.6 16v',
+    color:'Negro',
+    condition:'Muy bueno',
+    location:'Córdoba, Argentina',
+    finance:false,
+    type:'Hatchback',
+    description:'Versátil, económico y con excelente espacio interior. Una opción ideal para uso familiar o trabajo diario.',
+    benefits:['GNC instalado','Barras de techo','Aire acondicionado','Dirección asistida'],
+    features:['Equipo de GNC','Motor 1.6 16v','Excelente habitabilidad','Barras de techo','Bajo costo por kilómetro','Muy buen estado'],
+    waText:'Hola, me interesa el RENAULT SANDERO STEPWAY 1.6 GNC. ¿Sigue disponible?',
+    images:['img/Sandero-stepway-1.jpg','img/Sandero-stepway-2.jpg','img/Sandero-stepway-3.jpg','img/Sandero-stepway-4.jpg','img/Sandero-stepway-5.jpg','img/Sandero-stepway-6.jpg','img/Sandero-stepway-7.jpg','img/Sandero-stepway-8.jpg']
   }
 ];
 
-/* ── Render Vehicle Cards ── */
-function renderCards() {
-  const grid = document.getElementById('vehicleGrid');
-  grid.innerHTML = vehicles.map((v, i) => {
-    const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent('Hola Damián, me interesa el ' + v.brand + ' ' + v.model + ' ' + v.year)}`;
-    const delay = (i % 3) * 0.04;
+function renderCards(){
+  const grid=document.getElementById('vehicleGrid');
+  grid.innerHTML=vehicles.map((v,i)=>{
+    const waUrl=`https://wa.me/${WA}?text=${encodeURIComponent(v.waText)}`;
+    const delay=(i%3)*0.04;
     return `
     <div class="group bg-card border border-border rounded-2xl overflow-hidden card-hover fade-up" style="transition-delay:${delay}s">
       <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openModal(${v.id})">
         <img src="${v.images[0]}" alt="${v.brand} ${v.model}" class="w-full h-full object-cover vehicle-img" loading="lazy">
-        ${v.finance ? '<div class="absolute top-4 left-4"><span class="bg-white/90 text-dark text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm">Financiación disponible</span></div>' : ''}
+        ${v.finance?'<div class="absolute top-4 left-4"><span class="bg-white/90 text-dark text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm">Financiación disponible</span></div>':''}
         <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark/60 to-transparent"></div>
+        <div class="absolute bottom-3 right-3 bg-dark/60 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-full border border-white/10"><i class="fas fa-images mr-1"></i>${v.images.length} fotos</div>
       </div>
       <div class="p-5">
         <div class="flex items-start justify-between gap-3 mb-3">
@@ -790,7 +686,7 @@ function renderCards() {
           <span class="flex items-center gap-1.5"><i class="fas fa-gas-pump text-[10px] text-subtle"></i> ${v.fuel}</span>
         </div>
         <div class="border-t border-border pt-4 flex items-center justify-between gap-3">
-          <span class="text-white font-display text-[1.35rem] font-medium">${v.price}</span>
+          <span class="text-white font-display text-[1.25rem] font-medium">${v.price}</span>
           <div class="flex gap-2">
             <button onclick="openModal(${v.id})" class="btn-outline px-3.5 py-2 rounded-full text-[11px] font-medium flex items-center gap-1.5">
               <i class="fas fa-expand text-[9px]"></i> Ver más
@@ -803,104 +699,86 @@ function renderCards() {
       </div>
     </div>`;
   }).join('');
-  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el=>observer.observe(el));
 }
 
-/* ── Modal Logic ── */
-let currentVehicle = null;
-let currentImgIdx = 0;
+let currentVehicle=null,currentImgIdx=0;
 
-function openModal(id) {
-  currentVehicle = vehicles.find(v => v.id === id);
-  if (!currentVehicle) return;
-  currentImgIdx = 0;
-  const v = currentVehicle;
-  const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent('Hola Damián, me interesa el ' + v.brand + ' ' + v.model + ' ' + v.year)}`;
+function openModal(id){
+  currentVehicle=vehicles.find(v=>v.id===id);
+  if(!currentVehicle)return;
+  currentImgIdx=0;
+  const v=currentVehicle;
+  const waUrl=`https://wa.me/${WA}?text=${encodeURIComponent(v.waText)}`;
 
-  document.getElementById('galleryImg').src = v.images[0];
-  document.getElementById('galleryImg').alt = v.brand + ' ' + v.model;
-  document.getElementById('galleryThumbs').innerHTML = v.images.map((img, i) =>
-    `<div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"><img src="${img}" alt="Foto ${i+1}" loading="lazy"></div>`
+  document.getElementById('galleryImg').src=v.images[0];
+  document.getElementById('galleryImg').alt=v.brand+' '+v.model;
+  document.getElementById('galleryCounter').textContent=`1 / ${v.images.length}`;
+  document.getElementById('galleryThumbs').innerHTML=v.images.map((img,i)=>
+    `<div class="gallery-thumb ${i===0?'active':''}" onclick="goToSlide(${i})"><img src="${img}" alt="Foto ${i+1}" loading="lazy"></div>`
   ).join('');
 
-  document.getElementById('modalTitle').textContent = v.brand + ' ' + v.model;
-  document.getElementById('modalSubtitle').textContent = v.version + ' · ' + v.year + ' · ' + v.km;
-  document.getElementById('modalPrice').textContent = v.price;
-  document.getElementById('modalFinance').textContent = v.finance ? 'Financiación disponible' : '';
-  document.getElementById('modalDesc').textContent = v.description;
+  document.getElementById('modalTitle').textContent=v.brand+' '+v.model;
+  document.getElementById('modalSubtitle').textContent=v.version+' · '+v.year+' · '+v.km;
+  document.getElementById('modalPrice').textContent=v.price;
+  document.getElementById('modalFinance').textContent=v.finance?'Financiación disponible':'';
+  document.getElementById('modalDesc').textContent=v.description;
 
-  const specs = [
-    { icon: 'fa-car', label: 'Marca / Modelo', value: v.brand + ' ' + v.model },
-    { icon: 'fa-calendar-alt', label: 'Año', value: v.year },
-    { icon: 'fa-road', label: 'Kilometraje', value: v.km },
-    { icon: 'fa-cogs', label: 'Transmisión', value: v.transmission },
-    { icon: 'fa-gas-pump', label: 'Combustible', value: v.fuel },
-    { icon: 'fa-tachometer-alt', label: 'Motor', value: v.engine },
-    { icon: 'fa-palette', label: 'Color', value: v.color },
-    { icon: 'fa-check-circle', label: 'Estado', value: v.condition },
-    { icon: 'fa-map-marker-alt', label: 'Ubicación', value: v.location },
-    { icon: 'fa-tag', label: 'Precio', value: v.price }
+  const specs=[
+    {icon:'fa-car',label:'Marca / Modelo',value:v.brand+' '+v.model},
+    {icon:'fa-calendar-alt',label:'Año',value:v.year},
+    {icon:'fa-road',label:'Kilometraje',value:v.km},
+    {icon:'fa-cogs',label:'Transmisión',value:v.transmission},
+    {icon:'fa-gas-pump',label:'Combustible',value:v.fuel},
+    {icon:'fa-tachometer-alt',label:'Motor',value:v.engine},
+    {icon:'fa-palette',label:'Color',value:v.color},
+    {icon:'fa-check-circle',label:'Estado',value:v.condition},
+    {icon:'fa-map-marker-alt',label:'Ubicación',value:v.location},
+    {icon:'fa-tag',label:'Precio',value:v.price}
   ];
-  document.getElementById('modalSpecs').innerHTML = specs.map(s =>
+  document.getElementById('modalSpecs').innerHTML=specs.map(s=>
     `<div class="spec-item"><div class="spec-icon"><i class="fas ${s.icon}"></i></div><div><div class="spec-label">${s.label}</div><div class="spec-value">${s.value}</div></div></div>`
   ).join('');
 
-  document.getElementById('modalBenefits').innerHTML = v.benefits.map(b =>
+  document.getElementById('modalBenefits').innerHTML=v.benefits.map(b=>
     `<div class="flex items-center gap-2.5"><div class="w-5 h-5 rounded-full bg-white/[.06] flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-accent text-[8px]"></i></div><span class="text-offwhite text-[13px]">${b}</span></div>`
   ).join('');
 
-  document.getElementById('modalWaBtn').href = waUrl;
-  document.getElementById('modalWaText').textContent = 'Consultar por el ' + v.brand + ' ' + v.model + ' ' + v.year;
+  document.getElementById('modalWaBtn').href=waUrl;
+  document.getElementById('modalWaText').textContent='Consultar por el '+v.brand+' '+v.model+' '+v.year;
 
   document.getElementById('modalOverlay').classList.add('active');
   document.getElementById('modalContainer').classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeModal() {
+function closeModal(){
   document.getElementById('modalOverlay').classList.remove('active');
   document.getElementById('modalContainer').classList.remove('active');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
 
-function goToSlide(idx) {
-  if (!currentVehicle) return;
-  currentImgIdx = idx;
-  document.getElementById('galleryImg').src = currentVehicle.images[idx];
-  document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+function goToSlide(idx){
+  if(!currentVehicle)return;
+  currentImgIdx=idx;
+  document.getElementById('galleryImg').src=currentVehicle.images[idx];
+  document.getElementById('galleryCounter').textContent=`${idx+1} / ${currentVehicle.images.length}`;
+  document.querySelectorAll('.gallery-thumb').forEach((t,i)=>t.classList.toggle('active',i===idx));
 }
-function galleryPrev() {
-  if (!currentVehicle) return;
-  currentImgIdx = (currentImgIdx - 1 + currentVehicle.images.length) % currentVehicle.images.length;
-  goToSlide(currentImgIdx);
-}
-function galleryNext() {
-  if (!currentVehicle) return;
-  currentImgIdx = (currentImgIdx + 1) % currentVehicle.images.length;
-  goToSlide(currentImgIdx);
-}
+function galleryPrev(){if(!currentVehicle)return;currentImgIdx=(currentImgIdx-1+currentVehicle.images.length)%currentVehicle.images.length;goToSlide(currentImgIdx)}
+function galleryNext(){if(!currentVehicle)return;currentImgIdx=(currentImgIdx+1)%currentVehicle.images.length;goToSlide(currentImgIdx)}
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowLeft') galleryPrev(); if (e.key === 'ArrowRight') galleryNext(); });
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.key==='ArrowLeft')galleryPrev();if(e.key==='ArrowRight')galleryNext()});
 
-/* ── Scroll Observer ── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
-}, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+const observer=new IntersectionObserver(entries=>{entries.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 
-/* ── Navbar ── */
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
-    nav.classList.add('bg-dark/95', 'nav-blur', 'border-b', 'border-border');
-    nav.querySelector('div').classList.replace('py-5', 'py-3');
-  } else {
-    nav.classList.remove('bg-dark/95', 'nav-blur', 'border-b', 'border-border');
-    nav.querySelector('div').classList.replace('py-3', 'py-5');
-  }
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>60){nav.classList.add('bg-dark/95','nav-blur','border-b','border-border');nav.querySelector('div').classList.replace('py-5','py-3')}
+  else{nav.classList.remove('bg-dark/95','nav-blur','border-b','border-border');nav.querySelector('div').classList.replace('py-3','py-5')}
 });
 
-/* ── Init ── */
 renderCards();
 </script>
 </body>
